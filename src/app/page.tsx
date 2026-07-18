@@ -1,14 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-
-const NAV_ITEMS = [
-  { label: "Home", href: "/", current: true },
-  { label: "Getting Ready", href: "/getting-ready", current: false },
-  { label: "Journey", href: "/journey", current: false },
-  { label: "Bar", href: "/bar", current: false },
-  { label: "Takeaway", href: "/takeaway", current: false },
-  { label: "Hometime", href: "/hometime", current: false },
-] as const;
+import Nav from "@/components/Nav/Nav";
 
 export default function Home() {
   return (
@@ -24,23 +16,7 @@ export default function Home() {
 
       <div className="homepage-shade" aria-hidden="true" />
 
-      <div className="homepage-menu group">
-        <button type="button" className="homepage-menu-trigger" aria-label="Open site navigation">
-          MENU
-        </button>
-        <nav className="homepage-nav" aria-label="Main navigation">
-          {NAV_ITEMS.map((item) => (
-            <Link
-              key={item.label}
-              href={item.href}
-              aria-current={item.current ? "page" : undefined}
-              className={item.current ? "homepage-nav-item is-current" : "homepage-nav-item"}
-            >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
-      </div>
+      <Nav active="home" />
 
       <Image
         src="/homepage/homegirl-title.png"

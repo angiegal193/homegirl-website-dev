@@ -149,7 +149,7 @@ body {
   transform: translateX(-45.5%);
   color: #fff;
   font-family: "Waterlily", "Comic Sans MS", "Bradley Hand", cursive;
-  font-size: clamp(10px, 1.15vw, 18px);
+  font-size: clamp(14px, 1.61vw, 25.2px);
   line-height: 1.08;
   text-align: center;
   text-wrap: pretty;

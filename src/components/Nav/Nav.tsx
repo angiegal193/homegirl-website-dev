@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 export type NavTab =
   | "home"
@@ -16,19 +17,19 @@ interface NavProps {
 }
 
 const NAV_ITEMS: { tab: NavTab; label: string; href: string; icon: string }[] = [
-  { tab: "home", label: "Home", href: "#home", icon: "/nav-icons/home.png" },
-  { tab: "getting-ready", label: "Getting Ready", href: "#getting-ready", icon: "/nav-icons/getting-ready.png" },
-  { tab: "journey", label: "Journey", href: "#journey", icon: "/nav-icons/journey.png" },
-  { tab: "bar", label: "Bar", href: "#bar", icon: "/nav-icons/bar.png" },
-  { tab: "takeaway", label: "Takeaway", href: "#takeaway", icon: "/nav-icons/takeaway.png" },
-  { tab: "hometime", label: "Hometime", href: "#hometime", icon: "/nav-icons/hometime.png" },
+  { tab: "home", label: "Home", href: "/", icon: "/nav-icons/home.png" },
+  { tab: "getting-ready", label: "Getting Ready", href: "/getting-ready", icon: "/nav-icons/getting-ready.png" },
+  { tab: "journey", label: "Journey", href: "/journey", icon: "/nav-icons/journey.png" },
+  { tab: "bar", label: "Bar", href: "/bar", icon: "/nav-icons/bar.png" },
+  { tab: "takeaway", label: "Takeaway", href: "/takeaway", icon: "/nav-icons/takeaway.png" },
+  { tab: "hometime", label: "Hometime", href: "/hometime", icon: "/nav-icons/hometime.png" },
 ];
 
 /**
  * Figma component 238:2 ("Website Nav Bar / Hover Menu Component"), built
  * from the code-ready markup in frame 377:2. Collapsed MENU trigger reveals
- * the full pill nav on hover/tap; anchors match the build note on 238:2
- * (#getting-ready, #journey, #bar, #takeaway, #hometime).
+ * the full pill nav on hover/tap. Route links keep the same navigation
+ * component usable across every page as the remaining sections are built.
  */
 export default function Nav({ active }: NavProps) {
   const [open, setOpen] = useState(false);
@@ -56,9 +57,10 @@ export default function Nav({ active }: NavProps) {
         }`}
       >
         {NAV_ITEMS.map(({ tab, label, href, icon }) => (
-          <a
+          <Link
             key={tab}
             href={href}
+            aria-current={tab === active ? "page" : undefined}
             className={`flex shrink-0 items-center gap-[8px] whitespace-nowrap rounded-full px-[9px] py-[5px] text-[13px] tracking-[1.04px] ${
               tab === active
                 ? "bg-white/18 font-medium text-white"
@@ -67,7 +69,7 @@ export default function Nav({ active }: NavProps) {
           >
             <Image src={icon} alt="" width={20} height={20} className="size-[20px] shrink-0 object-contain" />
             {label}
-          </a>
+          </Link>
         ))}
       </nav>
     </div>
