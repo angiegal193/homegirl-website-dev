@@ -4,6 +4,7 @@ import { useState } from "react";
 import { cameraRollPhotos, type CameraRollPhoto } from "@/data/cameraRoll";
 import CameraRollTile from "./CameraRollTile";
 import CameraRollExpanded from "./CameraRollExpanded";
+import CameraRollStatusBar from "./CameraRollStatusBar";
 
 const TAB_LABELS = ["Library", "For You", "Albums", "Search"] as const;
 
@@ -18,6 +19,9 @@ export default function CameraRoll() {
 
   return (
     <div className="mx-auto w-full max-w-[1220px] overflow-hidden rounded-2xl bg-neutral-950 shadow-xl">
+      {/* Decorative phone-mockup chrome — static, not a live clock */}
+      <CameraRollStatusBar />
+
       {/* Fixed header — stays put while the grid below scrolls */}
       <div className="flex items-end justify-between border-b border-white/5 px-6 py-4">
         <div>
