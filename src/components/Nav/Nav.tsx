@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -33,16 +33,46 @@ const NAV_ITEMS: { tab: NavTab; label: string; href: string; icon: string }[] = 
  */
 export default function Nav({ active }: NavProps) {
   const [open, setOpen] = useState(false);
+  const rootRef = useRef<HTMLDivElement>(null);
+
+  // Touch devices commonly synthesize a mouseenter right before a tap's
+  // click event, so onMouseEnter opening the menu and a click toggling it
+  // would immediately close it again on the very tap that opened it. The
+  // trigger button is only ever meant to open (it's hidden/non-interactive
+  // once open), so this is open-only rather than a toggle — that alone
+  // removes the race regardless of event order.
+  const openMenu = () => setOpen(true);
+
+  // onMouseLeave never fires on touch, so give touch users an explicit way
+  // to close: tap outside the nav, or press Escape.
+  useEffect(() => {
+    if (!open) return;
+    const onPointerDown = (e: PointerEvent) => {
+      if (rootRef.current && !rootRef.current.contains(e.target as Node)) {
+        setOpen(false);
+      }
+    };
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    document.addEventListener("pointerdown", onPointerDown);
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("pointerdown", onPointerDown);
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [open]);
 
   return (
     <div
+      ref={rootRef}
       className="fixed left-5 top-5 z-50 sm:left-[38px] sm:top-[30px]"
-      onMouseEnter={() => setOpen(true)}
+      onMouseEnter={openMenu}
       onMouseLeave={() => setOpen(false)}
     >
       <button
         type="button"
-        onClick={() => setOpen((v) => !v)}
+        onClick={openMenu}
         aria-expanded={open}
         className={`rounded-full border border-white/18 bg-black/42 px-3 py-2 text-[12px] font-medium tracking-[2.16px] text-white/82 transition-opacity ${
           open ? "pointer-events-none opacity-0" : "opacity-100"
