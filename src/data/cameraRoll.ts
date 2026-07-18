@@ -9,12 +9,6 @@ export interface CameraRollPhoto {
   row: number;
   colSpan: number;
   rowSpan: number;
-  /**
-   * TODO: no caption copy was provided for any tile yet. Empty string is a
-   * placeholder — the caption bar in the expand state will render blank
-   * until these are filled in.
-   */
-  caption: string;
 }
 
 // position -> [hometime asset id, col, row, featured]
@@ -74,7 +68,6 @@ export const cameraRollPhotos: CameraRollPhoto[] = LAYOUT.map(
       row,
       colSpan: featured ? 2 : 1,
       rowSpan: featured ? 2 : 1,
-      caption: "",
     };
   }
 );

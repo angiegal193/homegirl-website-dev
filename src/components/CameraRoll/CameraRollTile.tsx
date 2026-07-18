@@ -16,11 +16,11 @@ export default function CameraRollTile({ photo, onSelect }: CameraRollTileProps)
         gridColumn: `${photo.col} / span ${photo.colSpan}`,
         gridRow: `${photo.row} / span ${photo.rowSpan}`,
       }}
-      aria-label={`Open photo ${photo.position}${photo.caption ? `: ${photo.caption}` : ""}`}
+      aria-label={`Open photo ${photo.position}`}
     >
       <Image
         src={photo.thumbSrc}
-        alt={photo.caption || `Camera roll photo ${photo.position}`}
+        alt={`Camera roll photo ${photo.position}`}
         fill
         sizes={photo.featured ? "404px" : "200px"}
         className="object-cover transition-transform duration-300 ease-out group-hover:scale-105"

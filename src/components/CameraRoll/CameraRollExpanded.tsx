@@ -9,13 +9,13 @@ interface CameraRollExpandedProps {
   onClose: () => void;
 }
 
-const DEFAULT_TITLE = "Homegirl camera roll";
-
 /**
- * Matches Figma frame 148:1055 ("EXPANDED PHOTO STATE"): the grid stays
+ * Matches Figma frame 375:3023 ("EXPANDED PHOTO STATE"): the grid stays
  * visible but dimmed behind the overlay (55% black scrim, no blur) rather
  * than being replaced by a full-viewport blackout — so this is positioned
  * absolute within the CameraRoll shell, not a fixed/portal-style modal.
+ * No caption bar — the design was updated to drop it, image now fills
+ * the full overlay.
  */
 export default function CameraRollExpanded({ photo, onClose }: CameraRollExpandedProps) {
   useEffect(() => {
@@ -48,28 +48,14 @@ export default function CameraRollExpanded({ photo, onClose }: CameraRollExpande
           </span>
         </button>
 
-        <div className="relative h-[calc(100%-80px)] w-full">
+        <div className="relative h-full w-full">
           <Image
             src={photo.lightboxSrc}
-            alt={photo.caption || `Camera roll photo ${photo.position}`}
+            alt={`Camera roll photo ${photo.position}`}
             fill
             sizes="800px"
             className="object-cover"
           />
-        </div>
-
-        <div className="flex h-20 items-center justify-between bg-black px-7">
-          <div>
-            <p className="text-[19px] font-semibold text-white">
-              {photo.caption || DEFAULT_TITLE}
-            </p>
-            <p className="text-[13px] text-white/45">
-              Tap outside or close to return to grid
-            </p>
-          </div>
-          <span aria-hidden className="text-[34px] font-normal text-white/85">
-            ♡
-          </span>
         </div>
       </div>
     </div>
