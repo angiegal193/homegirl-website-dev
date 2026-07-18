@@ -18,7 +18,7 @@ export default function CameraRoll() {
   const [expanded, setExpanded] = useState<CameraRollPhoto | null>(null);
 
   return (
-    <div className="mx-auto w-full max-w-[1220px] overflow-hidden rounded-2xl bg-neutral-950 shadow-xl">
+    <div className="relative mx-auto w-full max-w-[1220px] overflow-hidden rounded-[36px] bg-neutral-950 shadow-xl">
       {/* Decorative phone-mockup chrome — static, not a live clock */}
       <CameraRollStatusBar />
 

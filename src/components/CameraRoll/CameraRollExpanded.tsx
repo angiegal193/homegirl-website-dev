@@ -9,6 +9,14 @@ interface CameraRollExpandedProps {
   onClose: () => void;
 }
 
+const DEFAULT_TITLE = "Homegirl camera roll";
+
+/**
+ * Matches Figma frame 148:1055 ("EXPANDED PHOTO STATE"): the grid stays
+ * visible but dimmed behind the overlay (55% black scrim, no blur) rather
+ * than being replaced by a full-viewport blackout — so this is positioned
+ * absolute within the CameraRoll shell, not a fixed/portal-style modal.
+ */
 export default function CameraRollExpanded({ photo, onClose }: CameraRollExpandedProps) {
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
@@ -20,42 +28,48 @@ export default function CameraRollExpanded({ photo, onClose }: CameraRollExpande
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
+      className="absolute inset-0 z-50 flex items-center justify-center bg-black/55"
       role="dialog"
       aria-modal="true"
       onClick={onClose}
     >
       <div
-        className="relative flex max-h-[90vh] max-w-[90vw] flex-col overflow-hidden rounded-lg bg-neutral-950 shadow-2xl"
+        className="relative h-[85%] w-[65%] max-h-[640px] max-w-[800px] overflow-hidden rounded-[32px] bg-[#050505] shadow-[0px_32px_90px_0px_rgba(0,0,0,0.75)]"
         onClick={(e) => e.stopPropagation()}
       >
         <button
           type="button"
           onClick={onClose}
           aria-label="Close"
-          className="absolute right-3 top-3 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-black/50 text-white hover:bg-black/70"
+          className="absolute right-6 top-6 z-10 flex h-[42px] w-[42px] items-center justify-center rounded-full bg-black/42 text-white/90 hover:bg-black/60"
         >
-          <span aria-hidden className="text-xl leading-none">
+          <span aria-hidden className="text-[30px] font-normal leading-none">
             ×
           </span>
         </button>
 
-        <div className="relative flex-1 overflow-hidden">
+        <div className="relative h-[calc(100%-80px)] w-full">
           <Image
             src={photo.lightboxSrc}
             alt={photo.caption || `Camera roll photo ${photo.position}`}
-            width={1800}
-            height={1800}
-            sizes="90vw"
-            className="max-h-[80vh] w-auto object-contain"
+            fill
+            sizes="800px"
+            className="object-cover"
           />
         </div>
 
-        <div className="flex items-center justify-between gap-4 bg-neutral-950/95 px-5 py-3">
-          <p className="text-sm text-white/80">
-            {photo.caption || " "}
-          </p>
-          <span className="text-xs text-white/40">{photo.position} / 40</span>
+        <div className="flex h-20 items-center justify-between bg-black px-7">
+          <div>
+            <p className="text-[19px] font-semibold text-white">
+              {photo.caption || DEFAULT_TITLE}
+            </p>
+            <p className="text-[13px] text-white/45">
+              Tap outside or close to return to grid
+            </p>
+          </div>
+          <span aria-hidden className="text-[34px] font-normal text-white/85">
+            ♡
+          </span>
         </div>
       </div>
     </div>
