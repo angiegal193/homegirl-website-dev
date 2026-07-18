@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Nav from "@/components/Nav/Nav";
 import HometimeChat from "@/components/HometimeChat/HometimeChat";
 import CameraRoll from "@/components/CameraRoll/CameraRoll";
@@ -5,12 +6,15 @@ import CameraRoll from "@/components/CameraRoll/CameraRoll";
 export default function HometimePage() {
   return (
     <main className="relative min-h-screen overflow-hidden bg-black">
-      {/*
-        TODO: Figma's background is a bokeh/selfie photo ("replace with
-        high-res"). Using a dark gradient placeholder until a specific shot
-        is picked — swap this div for an <Image> once confirmed.
-      */}
-      <div className="absolute inset-0 bg-gradient-to-br from-neutral-900 via-black to-neutral-900" />
+      <Image
+        src="/homepage/background.png"
+        alt=""
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover"
+      />
+      <div className="absolute inset-0 bg-black/35" />
 
       <Nav active="hometime" />
 
