@@ -135,22 +135,25 @@ const ATTACHMENT_PHOTOS = [
 
 const CANVAS_WIDTH = 516;
 const CANVAS_HEIGHT = 821;
+// Bumps the whole chat canvas up a touch on top of its natural Figma size
+// wherever there's room for it; narrow viewports still shrink below this.
+const TARGET_SCALE = 1.15;
 
 export default function HometimeChat() {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(wrapperRef, { once: true, amount: 0.4 });
-  const [scale, setScale] = useState(1);
+  const [scale, setScale] = useState(TARGET_SCALE);
 
   // The bubble/typing-indicator layout below is transcribed at Figma's
   // fixed desktop pixel coordinates (a 516x821 canvas). Rather than
   // rewriting every position as a percentage, the whole canvas scales
-  // down to fit narrower viewports (e.g. phones) so nothing overflows
-  // or gets clipped — proportions and animation stay identical, just
-  // smaller.
+  // to fit the available width so nothing overflows or gets clipped on
+  // narrow viewports (e.g. phones) — proportions and animation stay
+  // identical, just resized.
   useLayoutEffect(() => {
     const el = wrapperRef.current;
     if (!el) return;
-    const update = () => setScale(Math.min(1, el.offsetWidth / CANVAS_WIDTH));
+    const update = () => setScale(Math.min(TARGET_SCALE, el.offsetWidth / CANVAS_WIDTH));
     update();
     const ro = new ResizeObserver(update);
     ro.observe(el);
@@ -160,8 +163,8 @@ export default function HometimeChat() {
   return (
     <div
       ref={wrapperRef}
-      className="relative w-full max-w-[516px]"
-      style={{ height: CANVAS_HEIGHT * scale }}
+      className="relative w-full"
+      style={{ maxWidth: CANVAS_WIDTH * TARGET_SCALE, height: CANVAS_HEIGHT * scale }}
     >
     <div
       className="absolute left-0 top-0"
