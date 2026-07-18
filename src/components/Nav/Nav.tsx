@@ -36,7 +36,7 @@ export default function Nav({ active }: NavProps) {
 
   return (
     <div
-      className="fixed left-[38px] top-[30px] z-50"
+      className="fixed left-5 top-5 z-50 sm:left-[38px] sm:top-[30px]"
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
     >
@@ -52,7 +52,7 @@ export default function Nav({ active }: NavProps) {
       </button>
 
       <nav
-        className={`absolute left-0 top-0 flex items-start gap-2 overflow-hidden rounded-full border border-white/20 bg-black/44 px-3 py-[9px] shadow-[0px_8px_20px_0px_rgba(0,0,0,0.26)] transition-opacity ${
+        className={`absolute left-0 top-0 grid w-[calc(100vw-40px)] grid-cols-2 items-stretch gap-1 overflow-hidden rounded-[24px] border border-white/20 bg-black/44 p-2 shadow-[0px_8px_20px_0px_rgba(0,0,0,0.26)] backdrop-blur-md transition-opacity sm:flex sm:w-max sm:items-start sm:gap-2 sm:rounded-full sm:px-3 sm:py-[9px] ${
           open ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
       >
@@ -61,13 +61,13 @@ export default function Nav({ active }: NavProps) {
             key={tab}
             href={href}
             aria-current={tab === active ? "page" : undefined}
-            className={`flex shrink-0 items-center gap-[8px] whitespace-nowrap rounded-full px-[9px] py-[5px] text-[13px] tracking-[1.04px] ${
+            className={`flex min-w-0 items-center gap-2 whitespace-nowrap rounded-full px-2 py-2 text-[12px] tracking-[0.7px] sm:shrink-0 sm:px-[9px] sm:py-[5px] sm:text-[13px] sm:tracking-[1.04px] ${
               tab === active
                 ? "bg-white/18 font-medium text-white"
                 : "font-normal text-white/72"
             }`}
           >
-            <Image src={icon} alt="" width={20} height={20} className="size-[20px] shrink-0 object-contain" />
+            <Image src={icon} alt="" width={20} height={20} className="size-[18px] shrink-0 object-contain sm:size-[20px]" />
             {label}
           </Link>
         ))}
