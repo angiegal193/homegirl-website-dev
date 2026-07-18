@@ -143,9 +143,9 @@ body {
 .homepage-story {
   position: absolute;
   z-index: 2;
-  top: 45.5%;
+  top: 38.8%;
   left: 50%;
-  width: min(50.3vw, 788px);
+  width: min(70.42vw, 1103.2px);
   transform: translateX(-45.5%);
   color: #fff;
   font-family: "Waterlily", "Comic Sans MS", "Bradley Hand", cursive;
