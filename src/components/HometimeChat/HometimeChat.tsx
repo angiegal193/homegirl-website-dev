@@ -135,9 +135,9 @@ const ATTACHMENT_PHOTOS = [
 
 const CANVAS_WIDTH = 516;
 const CANVAS_HEIGHT = 821;
-// Bumps the whole chat canvas up a touch on top of its natural Figma size
+// Bumps the whole chat canvas up on top of its natural Figma size
 // wherever there's room for it; narrow viewports still shrink below this.
-const TARGET_SCALE = 1.15;
+const TARGET_SCALE = 1.3;
 
 export default function HometimeChat() {
   const wrapperRef = useRef<HTMLDivElement>(null);
