@@ -14,8 +14,11 @@ interface CameraRollExpandedProps {
  * visible but dimmed behind the overlay (55% black scrim, no blur) rather
  * than being replaced by a full-viewport blackout — so this is positioned
  * absolute within the CameraRoll shell, not a fixed/portal-style modal.
- * No caption bar — the design was updated to drop it, image now fills
- * the full overlay.
+ * No caption bar — the design was updated to drop it. The overlay box
+ * itself keeps Figma's fixed 800x640-ish aspect, but real photos have
+ * mixed aspect ratios (portrait and landscape), so the image uses
+ * object-contain (letterboxed on the fixed dark background) instead of
+ * object-cover, which was cropping content to force-fill the box.
  */
 export default function CameraRollExpanded({ photo, onClose }: CameraRollExpandedProps) {
   useEffect(() => {
@@ -54,7 +57,7 @@ export default function CameraRollExpanded({ photo, onClose }: CameraRollExpande
             alt={`Camera roll photo ${photo.position}`}
             fill
             sizes="800px"
-            className="object-cover"
+            className="object-contain"
           />
         </div>
       </div>
