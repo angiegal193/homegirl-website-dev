@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import { motion, useInView } from "motion/react";
 import Image from "next/image";
 import { bubbleAnims, dotAnims, indicatorAnims } from "./chatAnimations";
@@ -133,12 +133,40 @@ const ATTACHMENT_PHOTOS = [
   "/hometime-chat/photo-3.webp",
 ];
 
+const CANVAS_WIDTH = 516;
+const CANVAS_HEIGHT = 821;
+
 export default function HometimeChat() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(containerRef, { once: true, amount: 0.4 });
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(wrapperRef, { once: true, amount: 0.4 });
+  const [scale, setScale] = useState(1);
+
+  // The bubble/typing-indicator layout below is transcribed at Figma's
+  // fixed desktop pixel coordinates (a 516x821 canvas). Rather than
+  // rewriting every position as a percentage, the whole canvas scales
+  // down to fit narrower viewports (e.g. phones) so nothing overflows
+  // or gets clipped — proportions and animation stay identical, just
+  // smaller.
+  useLayoutEffect(() => {
+    const el = wrapperRef.current;
+    if (!el) return;
+    const update = () => setScale(Math.min(1, el.offsetWidth / CANVAS_WIDTH));
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
 
   return (
-    <div ref={containerRef} className="relative h-[821px] w-[516px]">
+    <div
+      ref={wrapperRef}
+      className="relative w-full max-w-[516px]"
+      style={{ height: CANVAS_HEIGHT * scale }}
+    >
+    <div
+      className="absolute left-0 top-0"
+      style={{ width: CANVAS_WIDTH, height: CANVAS_HEIGHT, transform: `scale(${scale})`, transformOrigin: "top left" }}
+    >
       {TEXT_BUBBLES.map((b) => {
         const anim = bubbleAnims[b.key];
         return (
@@ -209,6 +237,7 @@ export default function HometimeChat() {
       {INDICATORS.map((ind, i) => (
         <TypingIndicator key={i} anim={ind.anim} dots={ind.dots} left={ind.left} top={ind.top} play={isInView} />
       ))}
+    </div>
     </div>
   );
 }
