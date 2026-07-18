@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 
 export type NavTab =
   | "home"
@@ -14,13 +15,13 @@ interface NavProps {
   active: NavTab;
 }
 
-const NAV_ITEMS: { tab: NavTab; label: string; href: string }[] = [
-  { tab: "home", label: "Home", href: "#home" },
-  { tab: "getting-ready", label: "Getting Ready", href: "#getting-ready" },
-  { tab: "journey", label: "Journey", href: "#journey" },
-  { tab: "bar", label: "Bar", href: "#bar" },
-  { tab: "takeaway", label: "Takeaway", href: "#takeaway" },
-  { tab: "hometime", label: "Hometime", href: "#hometime" },
+const NAV_ITEMS: { tab: NavTab; label: string; href: string; icon: string }[] = [
+  { tab: "home", label: "Home", href: "#home", icon: "/nav-icons/home.png" },
+  { tab: "getting-ready", label: "Getting Ready", href: "#getting-ready", icon: "/nav-icons/getting-ready.png" },
+  { tab: "journey", label: "Journey", href: "#journey", icon: "/nav-icons/journey.png" },
+  { tab: "bar", label: "Bar", href: "#bar", icon: "/nav-icons/bar.png" },
+  { tab: "takeaway", label: "Takeaway", href: "#takeaway", icon: "/nav-icons/takeaway.png" },
+  { tab: "hometime", label: "Hometime", href: "#hometime", icon: "/nav-icons/hometime.png" },
 ];
 
 /**
@@ -54,16 +55,17 @@ export default function Nav({ active }: NavProps) {
           open ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
       >
-        {NAV_ITEMS.map(({ tab, label, href }) => (
+        {NAV_ITEMS.map(({ tab, label, href, icon }) => (
           <a
             key={tab}
             href={href}
-            className={`shrink-0 whitespace-nowrap rounded-full px-[9px] py-[5px] text-[13px] tracking-[1.04px] ${
+            className={`flex shrink-0 items-center gap-[8px] whitespace-nowrap rounded-full px-[9px] py-[5px] text-[13px] tracking-[1.04px] ${
               tab === active
                 ? "bg-white/18 font-medium text-white"
                 : "font-normal text-white/72"
             }`}
           >
+            <Image src={icon} alt="" width={20} height={20} className="size-[20px] shrink-0 object-contain" />
             {label}
           </a>
         ))}
