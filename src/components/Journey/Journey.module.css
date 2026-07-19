@@ -1,0 +1,54 @@
+.page {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  overscroll-behavior: none;
+  background: #000;
+}
+
+.viewport {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.canvas { position: absolute; top: 50%; left: 50%; width: 1567px; height: 912px; overflow: hidden; transform-origin: center; background: #050505; }
+.background { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; object-fit: cover; }
+.shade { position: absolute; inset: 0; z-index: 1; background: rgb(0 0 0 / 18%); }
+.route { position: absolute; z-index: 2; pointer-events: none; }
+.route img, .card img, .ctaBar img, .ctaArrow img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.routeOrange { left: 175.83px; top: 185.31px; width: 588.17px; height: 623.08px; }
+.routeRed { left: 790px; top: 441px; width: 704px; height: 362px; }
+.stationLabel { position: absolute; z-index: 6; margin: 0; color: white; font-family: "Waterlily", "Comic Sans MS", cursive; font-size: 36px; line-height: 1; white-space: nowrap; text-shadow: 0 2px 8px rgb(0 0 0 / 45%); }
+.dalstonLabel { left: 154px; top: 86px; rotate: -20deg; }
+.oxfordLabel { left: 712px; top: 641px; }
+.sohoLabel { left: 1286px; top: 360px; rotate: -14.4deg; }
+.stationDot { position: absolute; z-index: 5; width: 47px; height: 47px; border-radius: 50%; transform-origin: center; }
+.dotDalston { left: 307px; top: 155px; background: #ff761a; }
+.dotOxfordOrange { left: 751px; top: 567px; background: #ff761a; }
+.dotOxfordRed { left: 774px; top: 710px; background: #ef2424; }
+.dotSoho { left: 1317px; top: 428px; background: #ef2424; }
+.card { position: absolute; z-index: 4; margin: 0; padding: 0; border: 0; background: transparent; cursor: zoom-in; animation: card-float 6s ease-in-out infinite; will-change: transform; }
+.chat { position: absolute; z-index: 8; overflow: hidden; transform-origin: center; }
+.bubbleRight, .bubbleLeft { position: absolute; top: 0; border-radius: 18.5px; }
+.bubbleRight { border-bottom-right-radius: 3px; background: #2d7ff9; }
+.bubbleLeft { border-bottom-left-radius: 3px; background: #3a3a3c; }
+.message { position: absolute; top: 11px; z-index: 1; margin: 0; color: #fff; font: 400 15.4px/1.25 Arial, sans-serif; }
+.time { position: absolute; z-index: 1; margin: 0; color: #666; font: 400 11.3px/1 Arial, sans-serif; white-space: nowrap; }
+.typing { position: absolute; z-index: 8; left: 1472.6px; top: 644px; display: flex; width: 74px; height: 36px; align-items: center; justify-content: center; gap: 7px; border-radius: 18px; background: #38383d; }
+.typing span { width: 7px; height: 7px; border-radius: 50%; background: #fff; animation: typing-dot .72s ease-in-out infinite alternate; }
+.typing span:nth-child(2) { animation-delay: .12s; }
+.typing span:nth-child(3) { animation-delay: .24s; }
+.ctaBar { position: absolute; z-index: 9; left: 1230.24px; top: 735.7px; width: 364.87px; height: 136.56px; }
+.ctaArrow { position: absolute; z-index: 9; left: 1254px; top: 865px; width: 251px; height: 22px; }
+.lightbox { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; padding: 40px; background: rgb(0 0 0 / 84%); backdrop-filter: blur(14px); cursor: zoom-out; }
+.lightboxImageWrap { position: relative; display: grid; max-width: min(92vw, 1200px); max-height: 90vh; place-items: center; cursor: default; filter: drop-shadow(0 24px 55px rgb(0 0 0 / 60%)); }
+.lightboxImageWrap > img { display: block; max-width: 100%; max-height: 90vh; object-fit: contain; }
+.lightboxClose { position: absolute; top: -18px; right: -18px; display: grid; width: 42px; height: 42px; place-items: center; border: 1px solid rgb(255 255 255 / 28%); border-radius: 50%; background: rgb(10 10 10 / 78%); color: #fff; font-size: 30px; line-height: 1; cursor: pointer; }
+@keyframes card-float { 0%,100% { transform: translate(0,0) rotate(0) scale(1); } 38% { transform: translate(-5px,7px) rotate(.45deg) scale(1.006); } 72% { transform: translate(3px,-4px) rotate(-.25deg) scale(.998); } }
+@keyframes typing-dot { to { transform: translateY(-3px); opacity: .62; } }
+@media (prefers-reduced-motion: reduce) { .card, .typing span { animation: none; } }

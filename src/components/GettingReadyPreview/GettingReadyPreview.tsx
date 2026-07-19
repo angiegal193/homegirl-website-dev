@@ -2,6 +2,7 @@
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useInView } from "motion/react";
+import Link from "next/link";
 import Nav from "@/components/Nav/Nav";
 import GettingReadyChat from "@/components/GettingReady/GettingReadyChat";
 import {
@@ -99,7 +100,10 @@ export default function GettingReadyPreview() {
               key={card.src}
               className={styles.card}
               aria-label={`Enlarge collage photo ${index + 1}`}
-              onClick={() => setSelectedImage({ src: `/getting-ready-preview/${card.src}`, alt: `Getting Ready collage photo ${index + 1}` })}
+              onClick={() => setSelectedImage({
+                src: `/getting-ready-preview/lightbox/card-${String(index + 1).padStart(2, "0")}.webp`,
+                alt: `Getting Ready collage photo ${index + 1}`,
+              })}
               style={{
                 left: card.x,
                 top: card.y,
@@ -176,6 +180,7 @@ export default function GettingReadyPreview() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/getting-ready/cta-arrow.svg" alt="" />
           </motion.div>
+          <Link className={styles.ctaLink} href="/journey" aria-label="Continue to Journey" />
         </div>
       </div>
 
