@@ -132,7 +132,11 @@ export default function Journey() {
               style={{ left: bubble.x, top: bubble.y, width: bubble.width, height: 89 }}
               initial={{ opacity: 0, y: 10, scale: 0.96 }}
               animate={isInView ? { opacity: 1, y: 0, scale: [.95, 1.035, 1] } : undefined}
-              transition={{ duration: 0.3, delay: bubble.delay, ease: "easeOut", times: [0, .47, 1] }}
+              transition={{
+                opacity: { duration: .3, delay: bubble.delay, ease: "easeOut" },
+                y: { duration: .3, delay: bubble.delay, ease: "easeOut" },
+                scale: { duration: .3, delay: bubble.delay, ease: "easeOut", times: [0, .47, 1] },
+              }}
             >
               <div className={bubble.side === "right" ? styles.bubbleRight : styles.bubbleLeft} style={{ left: bubble.bubbleLeft, width: bubble.bubbleWidth, height: bubble.bubbleHeight }} />
               <p className={styles.message} style={{ left: bubble.bubbleLeft + 18, width: bubble.bubbleWidth - 36 }}>{bubble.text}</p>
