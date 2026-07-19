@@ -151,7 +151,7 @@ body {
 }
 
 .homepage-title {
-  width: min(70%, 980px);
+  width: min(70vw, 1406px);
   height: auto;
   pointer-events: none;
   user-select: none;

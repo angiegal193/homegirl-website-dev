@@ -163,10 +163,14 @@ const COMPACT_TIMELINE = [
   { type: "photo" as const },
 ];
 
-export default function HometimeChat() {
+interface HometimeChatProps {
+  targetScale?: number;
+}
+
+export default function HometimeChat({ targetScale = TARGET_SCALE }: HometimeChatProps) {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(wrapperRef, { once: true, amount: 0.4 });
-  const [scale, setScale] = useState(TARGET_SCALE);
+  const [scale, setScale] = useState(targetScale);
   const [isCompact, setIsCompact] = useState(false);
 
   // The desktop bubble/typing-indicator layout is transcribed at Figma's
@@ -181,14 +185,14 @@ export default function HometimeChat() {
     if (!el) return;
     const update = () => {
       const width = el.offsetWidth;
-      setScale(Math.min(TARGET_SCALE, width / CANVAS_WIDTH));
+      setScale(Math.min(targetScale, width / CANVAS_WIDTH));
       setIsCompact(width < COMPACT_BREAKPOINT);
     };
     update();
     const ro = new ResizeObserver(update);
     ro.observe(el);
     return () => ro.disconnect();
-  }, []);
+  }, [targetScale]);
 
   if (isCompact) {
     return (

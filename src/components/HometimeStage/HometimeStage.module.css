@@ -1,0 +1,32 @@
+.viewport {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.canvas {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1567px;
+  height: 912px;
+  transform-origin: center;
+}
+
+.content {
+  position: absolute;
+  inset: 112px 18px 24px;
+  display: grid;
+  grid-template-columns: 640px minmax(0, 1fr);
+  gap: 42px;
+  align-items: start;
+}
+
+.chat,
+.camera {
+  min-width: 0;
+}
+
+.camera {
+  padding-top: 0;
+}
