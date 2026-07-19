@@ -86,7 +86,7 @@ export default function GettingReadyPreview() {
 
   return (
     <main className={styles.page}>
-      <Nav active="getting-ready" expanded />
+      <Nav active="getting-ready" />
       <div ref={wrapperRef} className={styles.viewport}>
         <div className={styles.canvas} style={{ transform: `translate(-50%, -50%) scale(${scale})` }}>
           {/* Same shared night-lights background used by Home and Hometime. */}

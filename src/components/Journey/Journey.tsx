@@ -9,9 +9,9 @@ const WIDTH = 1567;
 const HEIGHT = 912;
 
 const cards = [
-  { key: "dalston", label: "Dalston Junction", x: 38, y: 199, w: 338, h: 342, delay: -0.3 },
-  { key: "oxford", label: "Oxford Circus", x: 615.48, y: 259.56, w: 338, h: 342, delay: -1.9 },
-  { key: "soho", label: "Soho", x: 1200.3, y: 21.67, w: 338, h: 342, delay: -3.5 },
+  { key: "dalston", label: "Dalston Junction", x: 38, y: 199, w: 338, h: 342, delay: -0.3, reveal: 1.9, duration: 0.32 },
+  { key: "oxford", label: "Oxford Circus", x: 615.48, y: 259.56, w: 338, h: 342, delay: -1.9, reveal: 3.2, duration: 0.35 },
+  { key: "soho", label: "Soho", x: 1200.3, y: 21.67, w: 338, h: 342, delay: -3.5, reveal: 5.38, duration: 0.37 },
 ] as const;
 
 const bubbles = [
@@ -20,24 +20,24 @@ const bubbles = [
     time: "19:47",
     side: "right",
     x: 464.47,
-    y: 32.78,
+    y: 64,
     width: 554,
     bubbleLeft: 143.12,
     bubbleWidth: 394.47,
     bubbleHeight: 42.06,
-    delay: 0.25,
+    delay: 2.35,
   },
   {
     text: "he's actually gorg! i wonder where he's going....",
     time: "19:47",
     side: "left",
     x: 456.47,
-    y: 100.85,
+    y: 132,
     width: 554,
     bubbleLeft: 16.41,
     bubbleWidth: 373.44,
     bubbleHeight: 44.12,
-    delay: 0.8,
+    delay: 2.9,
   },
   {
     text: "we gotta go chica, give him your ig, it's the next stop xxx",
@@ -49,7 +49,7 @@ const bubbles = [
     bubbleLeft: 137.47,
     bubbleWidth: 400.11,
     bubbleHeight: 61.56,
-    delay: 2.35,
+    delay: 6.05,
   },
 ] as const;
 
@@ -81,43 +81,48 @@ export default function Journey() {
 
   return (
     <main className={styles.page}>
-      <Nav active="journey" expanded />
+      <Nav active="journey" />
       <div ref={viewportRef} className={styles.viewport}>
         <div ref={revealRef} className={styles.canvas} style={{ transform: `translate(-50%, -50%) scale(${scale})` }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img className={styles.background} src="/homepage/background.png" alt="" />
           <div className={styles.shade} />
 
-          <motion.div className={`${styles.route} ${styles.routeOrange}`} initial={{ opacity: 0, clipPath: "inset(0 100% 0 0)" }} animate={isInView ? { opacity: 1, clipPath: "inset(0 0% 0 0)" } : undefined} transition={{ duration: 1.5, delay: 0.35, ease: "easeInOut" }}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/journey/route-orange.svg" alt="" />
+          <motion.div className={`${styles.route} ${styles.routeOrange}`}>
+            <svg viewBox="0 0 595.397 634.087" preserveAspectRatio="none" aria-hidden="true">
+              <motion.path d="M169.672 5.69139C214.172 3.35806 308.472 21.3914 329.672 112.191C356.172 225.691 222.672 429.191 69.1717 472.191C-84.3283 515.191 73.1717 670.691 190.672 617.691C308.172 564.691 213.672 388.191 367.172 409.691C520.672 431.191 536.172 381.191 593.672 400.191" pathLength="1" fill="none" stroke="#EE7623" strokeWidth="11" initial={{ pathLength: 0 }} animate={isInView ? { pathLength: 1 } : undefined} transition={{ duration: 1.3, delay: 1.85, ease: "easeInOut" }} />
+            </svg>
           </motion.div>
-          <motion.div className={`${styles.route} ${styles.routeRed}`} initial={{ opacity: 0, clipPath: "inset(0 100% 0 0)" }} animate={isInView ? { opacity: 1, clipPath: "inset(0 0% 0 0)" } : undefined} transition={{ duration: 1.45, delay: 1.45, ease: "easeInOut" }}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/journey/route-red.svg" alt="" />
+          <motion.div className={`${styles.route} ${styles.routeRed}`}>
+            <svg viewBox="0 0 715 373" preserveAspectRatio="none" aria-hidden="true">
+              <motion.path d="M11.1507 306.838C-4.11495 336.676 2.3146 388.729 150.158 358.239C334.962 320.125 277.312 294.25 312.872 266.976C348.432 239.703 345.199 231.66 257.916 170.819C170.632 109.977 397.462 -58.9106 440.565 31.6524C483.668 122.215 269.769 193.197 542.935 142.146C816.1 91.0953 700.8 -9.60792 567.719 11.0222" pathLength="1" fill="none" stroke="#DC241F" strokeWidth="11" initial={{ pathLength: 0 }} animate={isInView ? { pathLength: 1 } : undefined} transition={{ duration: 1.25, delay: 4.1, ease: "easeInOut" }} />
+            </svg>
           </motion.div>
 
-          <p className={`${styles.stationLabel} ${styles.dalstonLabel}`}>Dalston Junction</p>
-          <p className={`${styles.stationLabel} ${styles.oxfordLabel}`}>Oxford Circus</p>
-          <p className={`${styles.stationLabel} ${styles.sohoLabel}`}>Soho</p>
+          <motion.p className={`${styles.stationLabel} ${styles.dalstonLabel}`} initial={{ opacity: 0, y: 8, scale: .98 }} animate={isInView ? { opacity: 1, y: 0, scale: [.98, 1.02, 1] } : undefined} transition={{ duration: .28, delay: .15, ease: "easeOut" }}>Dalston Junction</motion.p>
+          <motion.p className={`${styles.stationLabel} ${styles.oxfordLabel}`} initial={{ opacity: 0, y: 8, scale: .98 }} animate={isInView ? { opacity: 1, y: 0, scale: [.98, 1.02, 1] } : undefined} transition={{ duration: .28, delay: 3.12, ease: "easeOut" }}>Oxford Circus</motion.p>
+          <motion.p className={`${styles.stationLabel} ${styles.sohoLabel}`} initial={{ opacity: 0, y: 8, scale: .98 }} animate={isInView ? { opacity: 1, y: 0, scale: [.98, 1.02, 1] } : undefined} transition={{ duration: .28, delay: 5.32, ease: "easeOut" }}>Soho</motion.p>
 
-          <motion.div className={`${styles.stationDot} ${styles.dotDalston}`} initial={{ opacity: 0, scale: 0 }} animate={isInView ? { opacity: 1, scale: [0, 1.18, 1] } : undefined} transition={{ duration: 0.5, delay: 0.3 }} />
-          <motion.div className={`${styles.stationDot} ${styles.dotOxfordOrange}`} initial={{ opacity: 0, scale: 0 }} animate={isInView ? { opacity: 1, scale: [0, 1.18, 1] } : undefined} transition={{ duration: 0.5, delay: 1.55 }} />
-          <motion.div className={`${styles.stationDot} ${styles.dotOxfordRed}`} initial={{ opacity: 0, scale: 0 }} animate={isInView ? { opacity: 1, scale: [0, 1.18, 1] } : undefined} transition={{ duration: 0.5, delay: 1.75 }} />
-          <motion.div className={`${styles.stationDot} ${styles.dotSoho}`} initial={{ opacity: 0, scale: 0 }} animate={isInView ? { opacity: 1, scale: [0, 1.18, 1] } : undefined} transition={{ duration: 0.5, delay: 2.65 }} />
+          <motion.div className={`${styles.stationDot} ${styles.dotDalston}`} initial={{ opacity: 0, scale: .2 }} animate={isInView ? { opacity: 1, scale: [.2, 1.18, 1] } : undefined} transition={{ duration: .34, delay: 1.85, ease: "easeOut" }} />
+          <motion.div className={`${styles.stationDot} ${styles.dotOxfordOrange}`} initial={{ opacity: 0, scale: .2 }} animate={isInView ? { opacity: 1, scale: [.2, 1.18, 1] } : undefined} transition={{ duration: .34, delay: 3.17, ease: "easeOut" }} />
+          <motion.div className={`${styles.stationDot} ${styles.dotOxfordRed}`} initial={{ opacity: 0, scale: .2 }} animate={isInView ? { opacity: 1, scale: [.2, 1.16, 1] } : undefined} transition={{ duration: .3, delay: 4.1, ease: "easeOut" }} />
+          <motion.div className={`${styles.stationDot} ${styles.dotSoho}`} initial={{ opacity: 0, scale: .2 }} animate={isInView ? { opacity: 1, scale: [.2, 1.18, 1] } : undefined} transition={{ duration: .34, delay: 5.37, ease: "easeOut" }} />
 
           {cards.map((card) => (
-            <button
+            <motion.button
               type="button"
               key={card.key}
               className={styles.card}
               style={{ left: card.x, top: card.y, width: card.w, height: card.h, animationDelay: `${card.delay}s` }}
               aria-label={`Enlarge ${card.label} photo`}
+              initial={{ opacity: 0 }}
+              animate={isInView ? { opacity: 1 } : undefined}
+              transition={{ duration: card.duration, delay: card.reveal, ease: "easeOut" }}
               onClick={() => setSelectedImage({ src: `/journey/${card.key}.webp`, alt: `${card.label} journey photo` })}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={`/journey/${card.key}.webp`} alt="" />
-            </button>
+            </motion.button>
           ))}
 
           {bubbles.map((bubble) => (
@@ -126,8 +131,8 @@ export default function Journey() {
               className={styles.chat}
               style={{ left: bubble.x, top: bubble.y, width: bubble.width, height: 89 }}
               initial={{ opacity: 0, y: 10, scale: 0.96 }}
-              animate={isInView ? { opacity: 1, y: 0, scale: 1 } : undefined}
-              transition={{ duration: 0.45, delay: bubble.delay, ease: "easeOut" }}
+              animate={isInView ? { opacity: 1, y: 0, scale: [.95, 1.035, 1] } : undefined}
+              transition={{ duration: 0.3, delay: bubble.delay, ease: "easeOut", times: [0, .47, 1] }}
             >
               <div className={bubble.side === "right" ? styles.bubbleRight : styles.bubbleLeft} style={{ left: bubble.bubbleLeft, width: bubble.bubbleWidth, height: bubble.bubbleHeight }} />
               <p className={styles.message} style={{ left: bubble.bubbleLeft + 18, width: bubble.bubbleWidth - 36 }}>{bubble.text}</p>
@@ -135,15 +140,17 @@ export default function Journey() {
             </motion.div>
           ))}
 
-          <motion.div className={styles.typing} initial={{ opacity: 0, scale: 0.9 }} animate={isInView ? { opacity: [0, 1, 1, 0], scale: [0.9, 1, 1, 1] } : undefined} transition={{ duration: 1.25, delay: 1.15, times: [0, 0.15, 0.72, 1] }}>
-            <span /><span /><span />
+          <motion.div className={styles.typing} initial={{ opacity: 0, scale: .92 }} animate={isInView ? { opacity: [0, 1, 1, 0], scale: [.92, 1.04, 1, 1] } : undefined} transition={{ duration: .75, delay: 6.1, times: [0, .2, .76, 1] }}>
+            {[6.32, 6.42, 6.52].map((delay) => (
+              <motion.span key={delay} initial={{ y: 0 }} animate={isInView ? { y: [0, -4, 0] } : undefined} transition={{ duration: .26, delay, ease: "easeInOut" }} />
+            ))}
           </motion.div>
 
-          <motion.div className={styles.ctaBar} initial={{ opacity: 0, x: 26 }} animate={isInView ? { opacity: 1, x: 0 } : undefined} transition={{ duration: 0.7, delay: 2.8, ease: "easeOut" }}>
+          <motion.div className={styles.ctaBar} initial={{ opacity: 0, y: 24 }} animate={isInView ? { opacity: 1, y: 0 } : undefined} transition={{ duration: .5, delay: 6.35, ease: "easeOut" }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/journey/cta-bar.svg" alt="Bar" />
           </motion.div>
-          <motion.div className={styles.ctaArrow} initial={{ opacity: 0, x: -20 }} animate={isInView ? { opacity: 1, x: 0 } : undefined} transition={{ duration: 0.65, delay: 3.05, ease: "easeOut" }}>
+          <motion.div className={styles.ctaArrow} initial={{ opacity: 0, y: 24 }} animate={isInView ? { opacity: 1, y: 0 } : undefined} transition={{ duration: .5, delay: 6.35, ease: "easeOut" }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/journey/cta-arrow.svg" alt="" />
           </motion.div>
