@@ -77,8 +77,9 @@ export default function Takeaway() {
           </motion.div>
 
           <Link href="/hometime" className={styles.cta} aria-label="Continue to Hometime">
-            <motion.span initial={{ opacity: 0, y: 22 }} animate={shown ? { opacity: 1, y: 0 } : undefined} transition={{ duration: .55, delay: 2.31, ease: "easeOut" }}>Hometime</motion.span>
-            <motion.img src="/takeaway/hometime-arrow.svg" alt="" initial={{ opacity: 0, y: 22 }} animate={shown ? { opacity: 1, y: 0 } : undefined} transition={{ duration: .55, delay: 2.39, ease: "easeOut" }} />
+            <motion.img className={styles.ctaText} src="/takeaway/hometime-curved-text.svg" alt="Hometime" initial={{ opacity: 0, y: 22 }} animate={shown ? { opacity: 1, y: 0 } : undefined} transition={{ duration: .55, delay: 2.31, ease: "easeOut" }} />
+            <motion.img className={styles.ctaUnderline} src="/takeaway/hometime-underline.svg" alt="" initial={{ opacity: 0, scaleX: 0 }} animate={shown ? { opacity: 1, scaleX: 1 } : undefined} transition={{ duration: .48, delay: 2.47, ease: "easeOut" }} />
+            <motion.img className={styles.ctaArrow} src="/takeaway/hometime-arrow.svg" alt="" initial={{ opacity: 0, y: 22 }} animate={shown ? { opacity: 1, y: 0 } : undefined} transition={{ duration: .55, delay: 2.39, ease: "easeOut" }} />
           </Link>
         </div>
       </div>

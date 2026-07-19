@@ -134,8 +134,9 @@ export default function Bar() {
           </motion.div>
 
           <Link href="/takeaway" className={styles.cta} aria-label="Continue to Takeaway">
-            <motion.span initial={{ opacity: 0, y: 22 }} animate={shown ? { opacity: 1, y: 0 } : undefined} transition={{ duration: .55, delay: 2.23, ease: "easeOut" }}>Takeaway</motion.span>
-            <motion.img src="/bar/takeaway-arrow.svg" alt="" initial={{ opacity: 0, y: 22 }} animate={shown ? { opacity: 1, y: 0 } : undefined} transition={{ duration: .55, delay: 2.47, ease: "easeOut" }} />
+            <motion.img className={styles.ctaText} src="/bar/takeaway-curved-text.svg" alt="Takeaway" initial={{ opacity: 0, y: 22 }} animate={shown ? { opacity: 1, y: 0 } : undefined} transition={{ duration: .55, delay: 2.23, ease: "easeOut" }} />
+            <motion.img className={styles.ctaUnderline} src="/bar/takeaway-underline.svg" alt="" initial={{ opacity: 0, scaleX: 0 }} animate={shown ? { opacity: 1, scaleX: 1 } : undefined} transition={{ duration: .48, delay: 2.39, ease: "easeOut" }} />
+            <motion.img className={styles.ctaArrow} src="/bar/takeaway-arrow.svg" alt="" initial={{ opacity: 0, y: 22 }} animate={shown ? { opacity: 1, y: 0 } : undefined} transition={{ duration: .55, delay: 2.47, ease: "easeOut" }} />
           </Link>
         </div>
       </div>

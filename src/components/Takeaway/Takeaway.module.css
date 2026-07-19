@@ -13,9 +13,10 @@
 .secondMessage { left: 601px; top: 439px; width: 399px; }
 .typing { position: absolute; z-index: 9; left: 578px; top: 291px; display: flex; width: 74px; height: 36px; align-items: center; justify-content: center; gap: 7px; border-radius: 18px; background: #38383d; }
 .typing span { width: 7px; height: 7px; border-radius: 50%; background: #fff; }
-.cta { position: absolute; z-index: 10; left: 1210px; top: 782px; display: block; width: 310px; height: 112px; color: #fff; text-decoration: none; }
-.cta span { position: absolute; left: 0; top: 0; font-family: "Waterlily", cursive; font-size: 64px; line-height: 1; rotate: -5deg; }
-.cta img { position: absolute; left: 0; top: 76px; width: 251px; height: 22px; }
+.cta { position: absolute; z-index: 10; left: 1210px; top: 782px; display: block; width: 310px; height: 125px; color: #fff; text-decoration: none; }
+.cta .ctaText { position: absolute; left: 0; top: 0; width: 269px; height: 82px; }
+.cta .ctaUnderline { position: absolute; left: 0; top: 66px; width: 240.223px; height: 41.862px; transform-origin: left center; }
+.cta .ctaArrow { position: absolute; left: 0; top: 97px; width: 251px; height: 22px; }
 .lightbox { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; padding: 40px; background: rgb(0 0 0 / 84%); backdrop-filter: blur(14px); cursor: zoom-out; }
 .lightboxImageWrap { position: relative; display: grid; max-width: min(92vw, 1200px); max-height: 90vh; place-items: center; filter: drop-shadow(0 24px 55px rgb(0 0 0 / 60%)); }
 .lightboxImageWrap > img { display: block; max-width: 100%; max-height: 90vh; object-fit: contain; }
