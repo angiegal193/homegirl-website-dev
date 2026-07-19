@@ -5,9 +5,11 @@
 .collage { position: absolute; inset: 0; z-index: 2; transform-origin: center; }
 .collage > img, .photo img, .handbag img, .cutout img, .cta img { display: block; width: 100%; height: 100%; object-fit: contain; }
 .newspaperTop { position: absolute; left: 363.5px; top: 0; width: 741.8px !important; height: 60.6px !important; }
+.paperShapeSmall { position: absolute; left: 0; top: 0; width: 166.2px !important; height: 144.1px !important; z-index: 1; }
 .paperLeft { position: absolute; left: 0; top: 0; width: 166.2px !important; height: 144.1px !important; }
 .scrapLeft { position: absolute; left: 0; top: 244px; width: 170px !important; height: 118px !important; }
 .scrapRight { position: absolute; left: 1209px; top: 538px; width: 200px !important; height: 125px !important; }
+.bookPage { position: absolute; left: 1187px; top: 477px; width: 253px !important; height: 333px !important; object-fit: cover !important; z-index: 1; }
 .storyPage { position: absolute; left: -15px; top: 514px; width: 189px !important; height: 296px !important; }
 .notes { position: absolute; left: 774px; top: 61px; width: 178px !important; height: 224px !important; }
 .photo { position: absolute; margin: 0; padding: 0; border: 0; background: transparent; cursor: zoom-in; }
@@ -34,11 +36,11 @@
 .reply small { right: 0; }
 .typing { position: absolute; z-index: 13; left: 1262px; top: 505px; display: flex; width: 74px; height: 36px; align-items: center; justify-content: center; gap: 7px; border-radius: 18px; background: #38383d; }
 .typing span { width: 7px; height: 7px; border-radius: 50%; background: #fff; }
-.cta { position: absolute; z-index: 14; left: 1180px; top: 666px; display: block; width: 260px; height: 130px; color: #fff; text-decoration: none; }
+.cta { position: absolute; z-index: 14; left: 1115px; top: 658px; display: block; width: 300px; height: 140px; color: #fff; text-decoration: none; }
 .cta span { position: absolute; inset: 0 auto auto 0; font-family: "Waterlily", cursive; font-size: 68px; line-height: 1; rotate: -6deg; }
 .cta img { position: absolute; left: 8px; top: 76px; width: 251px; height: 22px; }
 .lightbox { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; padding: 40px; background: rgb(0 0 0 / 84%); backdrop-filter: blur(14px); cursor: zoom-out; }
 .lightboxImageWrap { position: relative; display: grid; max-width: min(92vw, 1200px); max-height: 90vh; place-items: center; cursor: default; filter: drop-shadow(0 24px 55px rgb(0 0 0 / 60%)); }
 .lightboxImageWrap > img { display: block; max-width: 100%; max-height: 90vh; object-fit: contain; }
 .lightboxClose { position: absolute; top: -18px; right: -18px; display: grid; width: 42px; height: 42px; place-items: center; border: 1px solid rgb(255 255 255 / 28%); border-radius: 50%; background: rgb(10 10 10 / 78%); color: #fff; font-size: 30px; line-height: 1; cursor: pointer; }
-@media (prefers-reduced-motion: reduce) { .collage, .handbag { transform: none !important; } }
+@media (prefers-reduced-motion: reduce) { .collage, .handbag, .cutout { transform: none !important; } }

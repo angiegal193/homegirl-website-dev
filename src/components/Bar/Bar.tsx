@@ -58,11 +58,15 @@ export default function Bar() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img className={styles.newspaperTop} src="/bar/Torn Newspaper Strip - Horizontal.png" alt="" />
             {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img className={styles.paperShapeSmall} src="/bar/Torn Paper Shape - Small.svg" alt="" />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img className={styles.paperLeft} src="/bar/Torn Text Fragment.png" alt="" />
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img className={styles.scrapLeft} src="/bar/Torn Newspaper Scrap - Left.png" alt="" />
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img className={styles.scrapRight} src="/bar/Torn Newspaper Scrap - Right.png" alt="" />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img className={styles.bookPage} src="/bar/Torn Book Page - Large.png" alt="" />
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img className={styles.storyPage} src="/bar/Story Text Page.png" alt="" />
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -102,10 +106,17 @@ export default function Bar() {
             <img src="/bar/Black Handbag.svg" alt="" />
           </motion.div>
 
-          <button type="button" className={styles.cutout} aria-label="Enlarge friends portrait" onClick={() => setSelectedImage({ src: "/bar/lightbox/bar-03.webp", alt: "Friends dressed for the bar" })}>
+          <motion.button
+            type="button"
+            className={styles.cutout}
+            aria-label="Enlarge friends portrait"
+            onClick={() => setSelectedImage({ src: "/bar/lightbox/bar-03.webp", alt: "Friends dressed for the bar" })}
+            animate={reduceMotion ? undefined : { x: [0, -3.5, 1.75, 0], y: [0, -3, 1.5, 0], rotate: [0, -.12, .06, 0], scale: [1, 1.0035, 1.001, 1] }}
+            transition={{ duration: 5.4, times: [0, .28, .72, 1], ease: "easeInOut", repeat: Infinity }}
+          >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/bar/HOMEGIRL_OUTSIDE_0384 1.png" alt="" />
-          </button>
+          </motion.button>
 
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img className={styles.date} src="/bar/Date Text - 19.10.25.png" alt="19.10.25" />
