@@ -29,9 +29,9 @@ body {
 
 .homepage-shell {
   position: relative;
-  min-height: 100svh;
-  overflow-x: hidden;
-  overflow-y: auto;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
   isolation: isolate;
   background: #050505;
 }
@@ -49,11 +49,11 @@ body {
   position: relative;
   z-index: 1;
   display: flex;
-  min-height: 100%;
+  height: 100%;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 130px 24px 48px;
+  padding: 44px 24px 20px;
   text-align: center;
 }
 
@@ -151,7 +151,7 @@ body {
 }
 
 .homepage-title {
-  width: min(84%, 1200px);
+  width: min(70%, 980px);
   height: auto;
   pointer-events: none;
   user-select: none;
@@ -160,14 +160,13 @@ body {
 
 .homepage-story {
   width: min(90vw, 1400px);
-  /* Tightened further on top of the first halving (was a uniform
-     clamp(18px,3vh,40px) flex gap shared with the story-cta gap below)
-     — copy now sits close under the title, story-cta gap left as is. */
-  margin-top: clamp(2px, 0.6vh, 8px);
+  margin-top: clamp(2px, 0.4vh, 6px);
   color: #fff;
   font-family: "Waterlily", "Comic Sans MS", "Bradley Hand", cursive;
   font-size: clamp(13.7px, 1.5755vw, 24.66px);
-  line-height: 1;
+  /* Tightened from 1 to fit the desktop hero into a hard 100dvh with no
+     scroll (see .homepage-shell) — a spacing lever, not a font-size cut. */
+  line-height: 0.94;
   text-align: center;
   text-wrap: pretty;
   text-shadow: 0 1px 5px rgb(0 0 0 / 0.55);
@@ -179,15 +178,15 @@ body {
 }
 
 .homepage-story p + p {
-  margin-top: 0.3em;
+  margin-top: 0.22em;
 }
 
 .homepage-cta {
   display: block;
   align-self: flex-end;
-  /* Same value as the old shared flex gap — kept as-is, only the
-     title-story gap above was tightened. */
-  margin-top: clamp(18px, 3vh, 40px);
+  /* Tightened (was clamp(18px,3vh,40px)) to help the desktop hero fit a
+     hard 100dvh with no scroll — see .homepage-shell. */
+  margin-top: clamp(6px, 0.8vh, 14px);
   width: min(31.1vw, 487px);
   min-width: 260px;
   transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1), filter 220ms ease;
@@ -228,7 +227,12 @@ body {
 
 @media (max-width: 820px) {
   .homepage-shell {
+    /* Desktop-only fixed height/overflow-hidden lives on the base rule
+       above — fully reset back to the original natural-page-scroll
+       behavior here so mobile is untouched by that change. */
+    height: auto;
     min-height: 100svh;
+    overflow-x: hidden;
     overflow-y: auto;
   }
 
@@ -266,6 +270,9 @@ body {
 
   .homepage-story {
     width: min(100%, 620px);
+    /* Locked to the pre-100dvh-desktop-pass value so the desktop-only
+       tightening on the base rule doesn't change mobile spacing. */
+    margin-top: clamp(2px, 0.6vh, 8px);
     font-size: clamp(13px, 3.75vw, 17px);
     line-height: 1.22;
   }
@@ -275,6 +282,9 @@ body {
   }
 
   .homepage-cta {
+    /* Locked to the pre-100dvh-desktop-pass value — see .homepage-story
+       above. */
+    margin-top: clamp(18px, 3vh, 40px);
     width: min(92%, 487px);
     min-width: 0;
   }
