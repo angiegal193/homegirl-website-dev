@@ -160,11 +160,10 @@ body {
 
 .homepage-story {
   width: min(90vw, 1400px);
-  /* Roughly half the old title-story gap (was a uniform clamp(18px,3vh,40px)
-     flex gap shared with the story-cta gap below) — tightened specifically
-     here so the copy reads as part of the same block as the title instead
-     of floating with a large accidental-looking gap above it. */
-  margin-top: clamp(9px, 1.5vh, 20px);
+  /* Tightened further on top of the first halving (was a uniform
+     clamp(18px,3vh,40px) flex gap shared with the story-cta gap below)
+     — copy now sits close under the title, story-cta gap left as is. */
+  margin-top: clamp(2px, 0.6vh, 8px);
   color: #fff;
   font-family: "Waterlily", "Comic Sans MS", "Bradley Hand", cursive;
   font-size: clamp(13.7px, 1.5755vw, 24.66px);
