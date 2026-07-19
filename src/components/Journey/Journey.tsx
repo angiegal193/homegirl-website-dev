@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import Link from "next/link";
 import { AnimatePresence, motion, useInView } from "motion/react";
 import Nav from "@/components/Nav/Nav";
 import styles from "./Journey.module.css";
@@ -150,14 +151,16 @@ export default function Journey() {
             ))}
           </motion.div>
 
-          <motion.div className={styles.ctaBar} initial={{ opacity: 0, y: 24 }} animate={isInView ? { opacity: 1, y: 0 } : undefined} transition={{ duration: .5, delay: 6.35, ease: "easeOut" }}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/journey/cta-bar.svg" alt="Bar" />
-          </motion.div>
-          <motion.div className={styles.ctaArrow} initial={{ opacity: 0, y: 24 }} animate={isInView ? { opacity: 1, y: 0 } : undefined} transition={{ duration: .5, delay: 6.35, ease: "easeOut" }}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/journey/cta-arrow.svg" alt="" />
-          </motion.div>
+          <Link href="/bar" aria-label="Continue to Bar">
+            <motion.div className={styles.ctaBar} initial={{ opacity: 0, y: 24 }} animate={isInView ? { opacity: 1, y: 0 } : undefined} transition={{ duration: .5, delay: 6.35, ease: "easeOut" }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/journey/cta-bar.svg" alt="" />
+            </motion.div>
+            <motion.div className={styles.ctaArrow} initial={{ opacity: 0, y: 24 }} animate={isInView ? { opacity: 1, y: 0 } : undefined} transition={{ duration: .5, delay: 6.35, ease: "easeOut" }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/journey/cta-arrow.svg" alt="" />
+            </motion.div>
+          </Link>
         </div>
       </div>
 
