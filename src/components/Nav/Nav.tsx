@@ -14,6 +14,7 @@ export type NavTab =
 
 interface NavProps {
   active: NavTab;
+  expanded?: boolean;
 }
 
 const NAV_ITEMS: { tab: NavTab; label: string; href: string; icon: string }[] = [
@@ -31,8 +32,8 @@ const NAV_ITEMS: { tab: NavTab; label: string; href: string; icon: string }[] = 
  * the full pill nav on hover/tap. Route links keep the same navigation
  * component usable across every page as the remaining sections are built.
  */
-export default function Nav({ active }: NavProps) {
-  const [open, setOpen] = useState(false);
+export default function Nav({ active, expanded = false }: NavProps) {
+  const [open, setOpen] = useState(expanded);
   const rootRef = useRef<HTMLDivElement>(null);
 
   // Touch devices commonly synthesize a mouseenter right before a tap's
@@ -68,14 +69,16 @@ export default function Nav({ active }: NavProps) {
       ref={rootRef}
       className="fixed left-5 top-5 z-50 sm:left-[38px] sm:top-[30px]"
       onMouseEnter={openMenu}
-      onMouseLeave={() => setOpen(false)}
+      onMouseLeave={() => {
+        if (!expanded) setOpen(false);
+      }}
     >
       <button
         type="button"
         onClick={openMenu}
         aria-expanded={open}
         className={`rounded-full border border-white/18 bg-black/42 px-3 py-2 text-[12px] font-medium tracking-[2.16px] text-white/82 transition-opacity ${
-          open ? "pointer-events-none opacity-0" : "opacity-100"
+          open || expanded ? "pointer-events-none opacity-0" : "opacity-100"
         }`}
       >
         MENU
@@ -83,7 +86,7 @@ export default function Nav({ active }: NavProps) {
 
       <nav
         className={`absolute left-0 top-0 grid w-[calc(100vw-40px)] grid-cols-2 items-stretch gap-1 overflow-hidden rounded-[24px] border border-white/20 bg-black/44 p-2 shadow-[0px_8px_20px_0px_rgba(0,0,0,0.26)] backdrop-blur-md transition-opacity sm:flex sm:w-max sm:items-start sm:gap-2 sm:rounded-full sm:px-3 sm:py-[9px] ${
-          open ? "opacity-100" : "pointer-events-none opacity-0"
+          open || expanded ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
       >
         {NAV_ITEMS.map(({ tab, label, href, icon }) => (
