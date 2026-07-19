@@ -49,7 +49,7 @@ const bubbles = [
     bubbleLeft: 137.47,
     bubbleWidth: 400.11,
     bubbleHeight: 61.56,
-    delay: 6.05,
+    delay: 6.9,
   },
 ] as const;
 
