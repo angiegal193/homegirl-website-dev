@@ -1,0 +1,18 @@
+.collage { position: absolute; inset: 0; }
+.card, .cutout { position: absolute; padding: 0; border: 0; background: transparent; cursor: zoom-in; transform-origin: center; }
+.card img, .cutout img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.cutout { z-index: 11; }
+.cutoutLeft { left: -13px; top: 197px; width: 175px; height: 206px; rotate: 13deg; }
+.cutoutRight { left: 227px; top: 245px; width: 163px; height: 209px; }
+.eyeshadow { position: absolute; z-index: 10; left: 75px; top: 82px; width: 69px; }
+.lipstick { position: absolute; z-index: 12; left: 164px; top: 350px; width: 26px; }
+.message { position: absolute; z-index: 20; display: flex; min-height: 26px; align-items: center; border-radius: 12px; padding: 6px 11px; color: #fff; font: 400 9.44px/1.18 Arial, sans-serif; transform-origin: center; }
+.message span { display: block; }
+.message small { position: absolute; top: calc(100% + 4px); color: #666; font-size: 6.92px; white-space: nowrap; }
+.left { left: 36px; border-bottom-left-radius: 2px; background: #3a3a3c; }
+.left small { left: 1px; }
+.right { right: 34px; border-bottom-right-radius: 2px; background: #2d7ff9; }
+.right small { right: 1px; }
+.cta { position: absolute; z-index: 22; left: 111px; bottom: 25px; display: block; width: 162px; height: 70px; }
+.cta img { position: absolute; inset: 0; display: block; width: 162px; height: 51px; }
+.cta .arrow { left: 31px; top: 46px; width: 114px; height: 10px; }

@@ -1,0 +1,18 @@
+.orangeRoute { position: absolute; z-index: 2; left: 31px; top: 105px; width: 251px; height: 247px; overflow: visible; }
+.redRouteWrap { position: absolute; z-index: 2; left: 47px; top: 308px; width: 274px; height: 466px; display: flex; align-items: center; justify-content: center; }
+.redRouteWrap svg { width: 466px; height: 274px; overflow: visible; transform: rotate(94.46deg) scaleY(-1); }
+.label { position: absolute; z-index: 7; margin: 0; color: #fff; font-family: "Waterlily", cursive; font-size: 21.5px; line-height: 1; white-space: nowrap; }
+.dalstonLabel { left: 7px; top: 61px; rotate: -20deg; }
+.oxfordLabel { left: 226px; top: 278px; }
+.sohoLabel { left: 199px; top: 695px; rotate: -14.4deg; }
+.dot { position: absolute; z-index: 6; width: 19px; height: 18px; border-radius: 50%; }
+.dot1 { left: 69px; top: 96px; background: #ff761a; }.dot2 { left: 274px; top: 255px; background: #ff761a; }.dot3 { left: 274px; top: 314px; background: #ef2424; }.dot4 { left: 221px; top: 726px; background: #ef2424; }
+.photo { position: absolute; z-index: 5; padding: 0; border: 0; background: transparent; cursor: zoom-in; transform-origin: center; }
+.photo img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.chat { position: absolute; z-index: 9; display: flex; min-height: 19px; align-items: center; border-radius: 8px; padding: 5px 8px; color: #fff; font: 400 6.7px/1.15 Arial, sans-serif; }
+.chat small { position: absolute; top: calc(100% + 3px); color: #666; font-size: 4.91px; white-space: nowrap; }
+.chat1 { left: 193px; top: 199px; width: 172px; border-bottom-right-radius: 1px; background: #2d7ff9; }.chat1 small { right: 3px; }
+.chat2 { left: 134px; top: 226px; width: 163px; border-bottom-left-radius: 1px; background: #3a3a3c; }.chat2 small { left: 2px; }
+.chat3 { left: 209px; top: 785px; width: 174px; min-height: 27px; border-bottom-right-radius: 1px; background: #2d7ff9; }.chat3 small { right: 3px; }
+.cta { position: absolute; z-index: 10; left: 90px; top: 737px; width: 254px; height: 95px; }
+.cta img { position: absolute; inset: 0; display: block; width: 254px; height: 95px; }.cta .ctaArrow { left: 46px; top: 81px; width: 76px; height: 7px; }

@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Nav from "@/components/Nav/Nav";
 import ResponsivePage from "@/components/ResponsivePage/ResponsivePage";
+import MobileHomepage from "@/components/MobileHomepage/MobileHomepage";
 
 export default function Home() {
   return (
@@ -68,6 +69,6 @@ export default function Home() {
           />
         </Link>
       </div>
-    </main>} />
+    </main>} mobile={<MobileHomepage />} />
   );
 }

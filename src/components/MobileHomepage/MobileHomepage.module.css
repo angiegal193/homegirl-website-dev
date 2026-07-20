@@ -1,0 +1,108 @@
+.root {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  isolation: isolate;
+  background: #050505;
+}
+
+.backgroundWrap,
+.shade {
+  position: absolute;
+  inset: 0;
+}
+
+.backgroundWrap {
+  z-index: -3;
+  transform-origin: center;
+}
+
+.background {
+  object-fit: cover;
+  object-position: 50% center;
+}
+
+.shade {
+  z-index: -2;
+  background: rgb(0 0 0 / 0.22);
+  pointer-events: none;
+}
+
+.stage {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  width: 390px;
+  height: 844px;
+  transform-origin: center;
+}
+
+.title {
+  position: absolute;
+  top: 78px;
+  left: 19px;
+  width: 341px;
+  height: 134px;
+  pointer-events: none;
+  user-select: none;
+}
+
+.title img,
+.cta img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.story {
+  position: absolute;
+  top: 221px;
+  left: 65px;
+  width: 260px;
+  margin: 0;
+  color: #fff;
+  font-family: "Waterlily", "Comic Sans MS", "Bradley Hand", cursive;
+  font-size: 11.91px;
+  line-height: 1.08;
+  text-align: center;
+  text-wrap: pretty;
+  text-shadow: 0 1px 4px rgb(0 0 0 / 0.55);
+}
+
+.story p {
+  margin: 0;
+}
+
+.cta {
+  position: absolute;
+  right: 5px;
+  bottom: 24px;
+  width: 337px;
+  height: 87px;
+  transform-origin: center bottom;
+}
+
+.cta a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.cta a:focus-visible {
+  border-radius: 12px;
+  outline: 2px solid rgb(255 255 255 / 0.9);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .backgroundWrap,
+  .title,
+  .story,
+  .cta {
+    transition: none;
+  }
+}

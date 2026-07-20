@@ -1,0 +1,30 @@
+.newspaperTop { position:absolute; z-index:1; left:-156px; top:-11px; width:742px; height:61px; object-fit:contain; }
+.storyPage { position:absolute; z-index:1; left:-14px; top:481px; width:145px; height:363px; object-fit:cover; object-position:right top; opacity:.9; }
+.scrapRight { position:absolute; z-index:3; right:-25px; top:508px; width:142px; height:90px; object-fit:contain; }
+.photo,.cutout { position:absolute; margin:0; padding:0; border:0; background:transparent; cursor:zoom-in; }
+.photo img,.cutout img,.cta img { display:block; width:100%; height:100%; object-fit:contain; pointer-events:none; }
+.hugPhoto { z-index:3; left:-118px; top:55px; width:286px; height:345px; }
+.winePhoto { z-index:4; left:133px; top:-2px; width:278px; height:292px; overflow:hidden; rotate:-1deg; }
+.winePhoto > img:first-child { position:absolute; inset:10px; width:calc(100% - 20px); height:calc(100% - 20px); object-fit:cover; }
+.wineWrap,.winePaper { position:absolute; inset:0; }
+.barPhoto { z-index:5; left:-73px; top:350px; width:253px; height:286px; }
+.mirrorPhoto { z-index:6; left:169px; top:307px; width:268px; height:264px; rotate:-3.4deg; overflow:hidden; }
+.mirrorPhoto > img:first-child { position:absolute; inset:0; object-fit:cover; object-position:50% 35%; }
+.mirrorWrap { position:absolute; inset:0; }
+.handbag { position:absolute; z-index:8; left:281px; top:476px; width:111px; height:106px; object-fit:contain; }
+.date { position:absolute; z-index:7; left:115px; top:418px; width:89px; height:28px; object-fit:contain; }
+.cutout { z-index:10; left:-21px; top:431px; width:462px; height:414px; overflow:hidden; }
+.cutout img { object-position:center top; }
+.message { position:absolute; z-index:12; display:flex; align-items:center; min-height:27px; border-radius:16px; padding:0 11px; color:#fff; font:400 9px/1.15 Arial,sans-serif; }
+.message small { position:absolute; top:calc(100% + 4px); color:#696969; font-size:6px; }
+.question { left:7px; top:724px; width:146px; background:#3a3a3e; }
+.question small { left:2px; }
+.reply { left:99px; top:763px; width:48px; min-height:24px; background:#2d7ff9; }
+.reply small { right:2px; }
+.typing { position:absolute; z-index:13; left:99px; top:763px; display:flex; width:47px; height:24px; align-items:center; justify-content:center; gap:4px; border-radius:13px; background:#3a3a3e; }
+.typing span { width:4px; height:4px; border-radius:50%; background:#fff; }
+.cta { position:absolute; z-index:14; left:126px; top:774px; width:244px; height:70px; color:#fff; text-decoration:none; }
+.ctaText { position:absolute; left:0; top:0; width:160px!important; height:48px!important; }
+.underline { position:absolute; left:0; top:39px; width:141px!important; height:27px!important; transform-origin:left center; }
+.arrow { position:absolute; left:0; top:58px; width:177px!important; height:15px!important; }
+@media (prefers-reduced-motion:reduce){.photo,.cutout,.handbag{transform:none!important}}

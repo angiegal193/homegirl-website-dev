@@ -1,0 +1,4 @@
+.lightbox { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; padding: 24px; background: rgb(0 0 0 / 84%); backdrop-filter: blur(14px); }
+.imageWrap { position: relative; display: grid; max-width: 92vw; max-height: 86dvh; place-items: center; filter: drop-shadow(0 24px 55px rgb(0 0 0 / 60%)); }
+.imageWrap > img { display: block; max-width: 100%; max-height: 86dvh; object-fit: contain; }
+.close { position: absolute; top: -17px; right: -17px; display: grid; width: 42px; height: 42px; place-items: center; border: 1px solid rgb(255 255 255 / 28%); border-radius: 50%; background: rgb(10 10 10 / 82%); color: #fff; font-size: 29px; line-height: 1; }
