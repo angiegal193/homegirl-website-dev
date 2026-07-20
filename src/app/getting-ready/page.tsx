@@ -1,5 +1,6 @@
 import GettingReadyPreview from "@/components/GettingReadyPreview/GettingReadyPreview";
+import ResponsivePage from "@/components/ResponsivePage/ResponsivePage";
 
 export default function GettingReadyPage() {
-  return <GettingReadyPreview />;
+  return <ResponsivePage desktop={<GettingReadyPreview />} />;
 }

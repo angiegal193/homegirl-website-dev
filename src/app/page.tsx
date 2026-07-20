@@ -1,10 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import Nav from "@/components/Nav/Nav";
+import ResponsivePage from "@/components/ResponsivePage/ResponsivePage";
 
 export default function Home() {
   return (
-    <main className="homepage-shell">
+    <ResponsivePage desktop={<main className="homepage-shell">
       <Image
         src="/homepage/background.png"
         alt="Abstract blurred lights at night"
@@ -67,6 +68,6 @@ export default function Home() {
           />
         </Link>
       </div>
-    </main>
+    </main>} />
   );
 }
