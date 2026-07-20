@@ -79,6 +79,7 @@ export default function MobileHometime() {
         <HometimeChat
           forceCanvas
           targetScale={chatScale}
+          contentScale={1.3}
           onPhotoClick={() => setCameraOpen(true)}
         />
       </section>

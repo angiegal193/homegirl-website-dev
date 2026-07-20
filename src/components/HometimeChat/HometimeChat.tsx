@@ -167,12 +167,14 @@ interface HometimeChatProps {
   targetScale?: number;
   forceCanvas?: boolean;
   onPhotoClick?: () => void;
+  contentScale?: number;
 }
 
 export default function HometimeChat({
   targetScale = TARGET_SCALE,
   forceCanvas = false,
   onPhotoClick,
+  contentScale = 1,
 }: HometimeChatProps) {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(wrapperRef, { once: true, amount: 0.4 });
@@ -281,45 +283,64 @@ export default function HometimeChat({
     );
   }
 
+  const photoTop = 493.05 * contentScale;
+  const visualCanvasHeight = Math.max(
+    CANVAS_HEIGHT,
+    photoTop + 215.949 * contentScale,
+  );
+
   return (
     <div
       ref={wrapperRef}
       className="relative w-full"
-      style={{ maxWidth: CANVAS_WIDTH * TARGET_SCALE, height: CANVAS_HEIGHT * scale }}
+      style={{ maxWidth: CANVAS_WIDTH * TARGET_SCALE, height: visualCanvasHeight * scale }}
     >
       <div
         className="absolute left-0 top-0"
-        style={{ width: CANVAS_WIDTH, height: CANVAS_HEIGHT, transform: `scale(${scale})`, transformOrigin: "top left" }}
+        style={{ width: CANVAS_WIDTH, height: visualCanvasHeight, transform: `scale(${scale})`, transformOrigin: "top left" }}
       >
         {TEXT_BUBBLES.map((b) => {
           const anim = bubbleAnims[b.key];
           return (
             <motion.div
               key={b.key}
-              className="absolute overflow-hidden"
-              style={{ top: b.top, left: 0, width: 516, height: b.bubbleHeight + 25 }}
+              className="absolute"
+              style={{
+                top: b.top * contentScale,
+                left: 0,
+                width: CANVAS_WIDTH,
+                height: (b.bubbleHeight + 25) * contentScale,
+              }}
               initial={anim.initial}
               animate={isInView ? anim.animate : anim.initial}
               transition={anim.transition}
             >
               <div
-                className={`absolute rounded-tl-[17.2px] rounded-tr-[17.2px] ${
-                  b.side === "right" ? "rounded-bl-[17.2px] rounded-br-[2.87px] bg-[#2d7ff9]" : "rounded-br-[17.2px] rounded-bl-[2.87px] bg-[#3a3a3c]"
-                }`}
-                style={{ left: b.bubbleLeft, width: b.bubbleWidth, height: b.bubbleHeight }}
-              />
-              <p
-                className="absolute whitespace-pre-wrap text-[14.3px] leading-normal text-white"
-                style={{ left: b.textLeft, width: b.textWidth, top: 10.51 }}
+                className="absolute left-0 top-0 h-full w-[516px]"
+                style={{
+                  transform: `scale(${contentScale})`,
+                  transformOrigin: b.side === "right" ? "top right" : "top left",
+                }}
               >
-                {b.text}
-              </p>
-              <p
-                className="absolute whitespace-nowrap text-[10.5px] text-[#666]"
-                style={{ left: b.timeLeft, top: b.bubbleHeight + 4.77 }}
-              >
-                {b.time}
-              </p>
+                <div
+                  className={`absolute rounded-tl-[17.2px] rounded-tr-[17.2px] ${
+                    b.side === "right" ? "rounded-bl-[17.2px] rounded-br-[2.87px] bg-[#2d7ff9]" : "rounded-br-[17.2px] rounded-bl-[2.87px] bg-[#3a3a3c]"
+                  }`}
+                  style={{ left: b.bubbleLeft, width: b.bubbleWidth, height: b.bubbleHeight }}
+                />
+                <p
+                  className="absolute whitespace-pre-wrap text-[14.3px] leading-normal text-white"
+                  style={{ left: b.textLeft, width: b.textWidth, top: 10.51 }}
+                >
+                  {b.text}
+                </p>
+                <p
+                  className="absolute whitespace-nowrap text-[10.5px] text-[#666]"
+                  style={{ left: b.timeLeft, top: b.bubbleHeight + 4.77 }}
+                >
+                  {b.time}
+                </p>
+              </div>
             </motion.div>
           );
         })}
@@ -332,12 +353,21 @@ export default function HometimeChat({
               aria-label="Open camera roll"
               disabled={!onPhotoClick}
               onClick={onPhotoClick}
-              className="absolute h-[215.949px] w-[516px] border-0 bg-transparent p-0 text-left disabled:cursor-default"
-              style={{ top: 493.05, left: 0 }}
+              className="absolute border-0 bg-transparent p-0 text-left disabled:cursor-default"
+              style={{
+                top: photoTop,
+                left: 0,
+                width: CANVAS_WIDTH,
+                height: 215.949 * contentScale,
+              }}
               initial={anim.initial}
               animate={isInView ? anim.animate : anim.initial}
               transition={anim.transition}
             >
+              <div
+                className="absolute left-0 top-0 h-[215.949px] w-[516px]"
+                style={{ transform: `scale(${contentScale})`, transformOrigin: "top right" }}
+              >
               <div className="absolute flex h-[140.446px] w-[109.417px] items-center justify-center" style={{ left: 334.66, top: 3.82 }}>
                 <div className="flex-none rotate-4">
                   <div className="relative h-[133.774px] w-[100.33px] overflow-hidden rounded-[10.5px]">
@@ -358,12 +388,22 @@ export default function HometimeChat({
               <p className="absolute whitespace-nowrap text-[10.5px] text-[#666]" style={{ left: 452.92, top: 195.88 }}>
                 11:20
               </p>
+              </div>
             </motion.button>
           );
         })()}
 
         {INDICATORS.map((ind) => (
-          <TypingIndicator key={ind.key} anim={ind.anim} dots={ind.dots} left={ind.left} top={ind.top} play={isInView} />
+          <TypingIndicator
+            key={ind.key}
+            anim={ind.anim}
+            dots={ind.dots}
+            left={ind.left}
+            top={ind.top}
+            play={isInView}
+            side={ind.side}
+            sizeScale={contentScale}
+          />
         ))}
       </div>
     </div>
