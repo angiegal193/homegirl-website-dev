@@ -4,17 +4,17 @@
  * roll" framing visually but must never look like it's trying to be a real,
  * live status bar (no clock, no actual signal/battery state).
  */
-export default function CameraRollStatusBar() {
+export default function CameraRollStatusBar({ compact = false }: { compact?: boolean }) {
   return (
-    <div className="flex items-center justify-between px-[26px] pb-2 pt-4 text-white">
-      <span className="text-[16px] font-semibold leading-none">16:47</span>
+    <div className={`flex items-center justify-between text-white ${compact ? "px-4 pb-1.5 pt-3" : "px-[26px] pb-2 pt-4"}`}>
+      <span className={`${compact ? "text-[14px]" : "text-[16px]"} font-semibold leading-none`}>16:47</span>
 
       <div className="flex items-center gap-[6px]">
         <div className="flex items-end gap-[3px]">
-          <span className="h-3 w-1 rounded-sm bg-white" />
-          <span className="h-4 w-1 rounded-sm bg-white" />
-          <span className="h-5 w-1 rounded-sm bg-white" />
-          <span className="h-6 w-1 rounded-sm bg-white/35" />
+          <span className={`${compact ? "h-2" : "h-3"} w-1 rounded-sm bg-white`} />
+          <span className={`${compact ? "h-2.5" : "h-4"} w-1 rounded-sm bg-white`} />
+          <span className={`${compact ? "h-3" : "h-5"} w-1 rounded-sm bg-white`} />
+          <span className={`${compact ? "h-3.5" : "h-6"} w-1 rounded-sm bg-white/35`} />
         </div>
 
         <svg

@@ -165,9 +165,15 @@ const COMPACT_TIMELINE = [
 
 interface HometimeChatProps {
   targetScale?: number;
+  forceCanvas?: boolean;
+  onPhotoClick?: () => void;
 }
 
-export default function HometimeChat({ targetScale = TARGET_SCALE }: HometimeChatProps) {
+export default function HometimeChat({
+  targetScale = TARGET_SCALE,
+  forceCanvas = false,
+  onPhotoClick,
+}: HometimeChatProps) {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(wrapperRef, { once: true, amount: 0.4 });
   const [scale, setScale] = useState(targetScale);
@@ -194,7 +200,7 @@ export default function HometimeChat({ targetScale = TARGET_SCALE }: HometimeCha
     return () => ro.disconnect();
   }, [targetScale]);
 
-  if (isCompact) {
+  if (isCompact && !forceCanvas) {
     return (
       <div ref={wrapperRef} className="w-full max-w-[640px]">
         <div className="flex flex-col gap-4 px-1 py-2">
@@ -238,9 +244,13 @@ export default function HometimeChat({ targetScale = TARGET_SCALE }: HometimeCha
             // Photo attachment — final bubble, always right-aligned.
             const anim = bubbleAnims.photoAttachment;
             return (
-              <motion.div
+              <motion.button
                 key={`photo-${i}`}
-                className="flex justify-end"
+                type="button"
+                aria-label="Open camera roll"
+                disabled={!onPhotoClick}
+                onClick={onPhotoClick}
+                className="flex justify-end border-0 bg-transparent p-0 text-left disabled:cursor-default"
                 initial={anim.initial}
                 animate={isInView ? anim.animate : anim.initial}
                 transition={anim.transition}
@@ -263,7 +273,7 @@ export default function HometimeChat({ targetScale = TARGET_SCALE }: HometimeCha
                   </div>
                   <span className="mt-[6px] px-1 text-[16px] text-[#666]">11:20</span>
                 </div>
-              </motion.div>
+              </motion.button>
             );
           })}
         </div>
@@ -317,8 +327,12 @@ export default function HometimeChat({ targetScale = TARGET_SCALE }: HometimeCha
         {(() => {
           const anim = bubbleAnims.photoAttachment;
           return (
-            <motion.div
-              className="absolute h-[215.949px] w-[516px]"
+            <motion.button
+              type="button"
+              aria-label="Open camera roll"
+              disabled={!onPhotoClick}
+              onClick={onPhotoClick}
+              className="absolute h-[215.949px] w-[516px] border-0 bg-transparent p-0 text-left disabled:cursor-default"
               style={{ top: 493.05, left: 0 }}
               initial={anim.initial}
               animate={isInView ? anim.animate : anim.initial}
@@ -344,7 +358,7 @@ export default function HometimeChat({ targetScale = TARGET_SCALE }: HometimeCha
               <p className="absolute whitespace-nowrap text-[10.5px] text-[#666]" style={{ left: 452.92, top: 195.88 }}>
                 11:20
               </p>
-            </motion.div>
+            </motion.button>
           );
         })()}
 

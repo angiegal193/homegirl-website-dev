@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Nav from "@/components/Nav/Nav";
 import HometimeStage from "@/components/HometimeStage/HometimeStage";
+import MobileHometime from "@/components/MobileHometime/MobileHometime";
 import ResponsivePage from "@/components/ResponsivePage/ResponsivePage";
 
 export default function HometimePage() {
@@ -17,6 +18,6 @@ export default function HometimePage() {
       <div className="absolute inset-0 bg-black/35" />
       <Nav active="hometime" />
       <HometimeStage />
-    </main>} />
+    </main>} mobile={<MobileHometime />} />
   );
 }

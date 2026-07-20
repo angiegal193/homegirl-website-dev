@@ -7,6 +7,7 @@ import type { CameraRollPhoto } from "@/data/cameraRoll";
 interface CameraRollExpandedProps {
   photo: CameraRollPhoto;
   onClose: () => void;
+  mobile?: boolean;
 }
 
 /**
@@ -20,7 +21,7 @@ interface CameraRollExpandedProps {
  * object-contain (letterboxed on the fixed dark background) instead of
  * object-cover, which was cropping content to force-fill the box.
  */
-export default function CameraRollExpanded({ photo, onClose }: CameraRollExpandedProps) {
+export default function CameraRollExpanded({ photo, onClose, mobile = false }: CameraRollExpandedProps) {
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -37,7 +38,11 @@ export default function CameraRollExpanded({ photo, onClose }: CameraRollExpande
       onClick={onClose}
     >
       <div
-        className="relative h-[85%] w-[65%] max-h-[640px] max-w-[800px] overflow-hidden rounded-[32px] bg-[#050505] shadow-[0px_32px_90px_0px_rgba(0,0,0,0.75)]"
+        className={`relative overflow-hidden bg-[#050505] shadow-[0px_32px_90px_0px_rgba(0,0,0,0.75)] ${
+          mobile
+            ? "aspect-square w-[calc(100%-32px)] rounded-[20px]"
+            : "h-[85%] w-[65%] max-h-[640px] max-w-[800px] rounded-[32px]"
+        }`}
         onClick={(e) => e.stopPropagation()}
       >
         <button

@@ -4,18 +4,24 @@ import type { CameraRollPhoto } from "@/data/cameraRoll";
 interface CameraRollTileProps {
   photo: CameraRollPhoto;
   onSelect: (photo: CameraRollPhoto) => void;
+  mobile?: boolean;
 }
 
-export default function CameraRollTile({ photo, onSelect }: CameraRollTileProps) {
+export default function CameraRollTile({ photo, onSelect, mobile = false }: CameraRollTileProps) {
   return (
     <button
       type="button"
       onClick={() => onSelect(photo)}
       className="group relative block h-full w-full overflow-hidden bg-neutral-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
-      style={{
-        gridColumn: `${photo.col} / span ${photo.colSpan}`,
-        gridRow: `${photo.row} / span ${photo.rowSpan}`,
-      }}
+      style={mobile
+        ? {
+            gridColumn: `span ${photo.featured ? 2 : 1}`,
+            gridRow: `span ${photo.featured ? 2 : 1}`,
+          }
+        : {
+            gridColumn: `${photo.col} / span ${photo.colSpan}`,
+            gridRow: `${photo.row} / span ${photo.rowSpan}`,
+          }}
       aria-label={`Open photo ${photo.position}`}
     >
       <Image
