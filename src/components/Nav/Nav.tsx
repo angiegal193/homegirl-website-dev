@@ -15,6 +15,7 @@ export type NavTab =
 interface NavProps {
   active: NavTab;
   expanded?: boolean;
+  className?: string;
 }
 
 const NAV_ITEMS: { tab: NavTab; label: string; href: string; icon: string }[] = [
@@ -32,7 +33,7 @@ const NAV_ITEMS: { tab: NavTab; label: string; href: string; icon: string }[] = 
  * the full pill nav on hover/tap. Route links keep the same navigation
  * component usable across every page as the remaining sections are built.
  */
-export default function Nav({ active, expanded = false }: NavProps) {
+export default function Nav({ active, expanded = false, className = "" }: NavProps) {
   const [open, setOpen] = useState(expanded);
   const rootRef = useRef<HTMLDivElement>(null);
 
@@ -67,7 +68,7 @@ export default function Nav({ active, expanded = false }: NavProps) {
   return (
     <div
       ref={rootRef}
-      className="fixed left-5 top-5 z-50 sm:left-[38px] sm:top-[30px]"
+      className={`fixed left-5 top-5 z-50 sm:left-[38px] sm:top-[30px] ${className}`}
       onMouseEnter={openMenu}
       onMouseLeave={() => {
         if (!expanded) setOpen(false);

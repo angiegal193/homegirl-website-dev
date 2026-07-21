@@ -9,6 +9,12 @@ import styles from "./MobileHomepage.module.css";
 
 const DESIGN_WIDTH = 390;
 const DESIGN_HEIGHT = 844;
+const TIMELINE_DURATION = 2.6;
+
+const titleSpring = (t: number) =>
+  1 -
+  Math.exp(-t * 7.6657) *
+    (Math.cos(t * 6.7605) + 1.1339 * Math.sin(t * 6.7605));
 
 export default function MobileHomepage() {
   const rootRef = useRef<HTMLElement>(null);
@@ -35,9 +41,40 @@ export default function MobileHomepage() {
     <main ref={rootRef} className={styles.root}>
       <motion.div
         className={styles.backgroundWrap}
-        initial={reduceMotion ? false : { opacity: 0, scale: 1.04 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: reduceMotion ? 0 : 0.65, ease: "easeOut" }}
+        initial={reduceMotion ? false : { opacity: 0, scaleX: 1.04, scaleY: 1.04 }}
+        animate={
+          reduceMotion
+            ? { opacity: 1, scaleX: 1, scaleY: 1 }
+            : {
+                opacity: [0, 1, 1],
+                scaleX: [1.04, 1, 1],
+                scaleY: [1.04, 1, 1],
+              }
+        }
+        transition={
+          reduceMotion
+            ? { duration: 0 }
+            : {
+                opacity: {
+                  duration: TIMELINE_DURATION,
+                  times: [0, 0.2308, 1],
+                  ease: ["easeOut", "linear"],
+                  repeat: Infinity,
+                },
+                scaleX: {
+                  duration: TIMELINE_DURATION,
+                  times: [0, 0.5769, 1],
+                  ease: ["easeOut", "linear"],
+                  repeat: Infinity,
+                },
+                scaleY: {
+                  duration: TIMELINE_DURATION,
+                  times: [0, 0.5769, 1],
+                  ease: ["easeOut", "linear"],
+                  repeat: Infinity,
+                },
+              }
+        }
       >
         <Image
           src="/homepage/background.png"
@@ -50,7 +87,10 @@ export default function MobileHomepage() {
       </motion.div>
       <div className={styles.shade} aria-hidden="true" />
 
-      <Nav active="home" />
+      <Nav
+        active="home"
+        className="!left-3 !top-[11px] sm:!left-3 sm:!top-[11px]"
+      />
 
       <div
         className={styles.stage}
@@ -58,13 +98,47 @@ export default function MobileHomepage() {
       >
         <motion.div
           className={styles.title}
-          initial={reduceMotion ? false : { opacity: 0, scale: 0.96, y: -20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{
-            duration: reduceMotion ? 0 : 0.82,
-            delay: reduceMotion ? 0 : 0.12,
-            ease: [0.22, 1, 0.36, 1],
-          }}
+          initial={reduceMotion ? false : { opacity: 0, scaleX: 0.96, scaleY: 0.96, y: -20 }}
+          animate={
+            reduceMotion
+              ? { opacity: 1, scaleX: 1, scaleY: 1, y: 0 }
+              : {
+                  opacity: [0, 1, 1],
+                  scaleX: [0.96, 1, 1],
+                  scaleY: [0.96, 1, 1],
+                  y: [-20, 0, 0],
+                }
+          }
+          transition={
+            reduceMotion
+              ? { duration: 0 }
+              : {
+                  opacity: {
+                    duration: TIMELINE_DURATION,
+                    times: [0, 0.3154, 1],
+                    ease: ["easeOut", "linear"],
+                    repeat: Infinity,
+                  },
+                  scaleX: {
+                    duration: TIMELINE_DURATION,
+                    times: [0, 0.3154, 1],
+                    ease: [titleSpring, "linear"],
+                    repeat: Infinity,
+                  },
+                  scaleY: {
+                    duration: TIMELINE_DURATION,
+                    times: [0, 0.3154, 1],
+                    ease: [titleSpring, "linear"],
+                    repeat: Infinity,
+                  },
+                  y: {
+                    duration: TIMELINE_DURATION,
+                    times: [0, 0.3154, 1],
+                    ease: ["easeOut", "linear"],
+                    repeat: Infinity,
+                  },
+                }
+          }
         >
           <Image
             src="/homepage/homegirl-title.png"
@@ -78,12 +152,19 @@ export default function MobileHomepage() {
         <motion.article
           className={styles.story}
           initial={reduceMotion ? false : { opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{
-            duration: reduceMotion ? 0 : 0.9,
-            delay: reduceMotion ? 0 : 0.2,
-            ease: "easeOut",
-          }}
+          animate={reduceMotion ? { opacity: 1 } : { opacity: [0, 0, 1, 1] }}
+          transition={
+            reduceMotion
+              ? { duration: 0 }
+              : {
+                  opacity: {
+                    duration: TIMELINE_DURATION,
+                    times: [0, 0.0769, 0.4231, 1],
+                    ease: ["linear", "easeOut", "linear"],
+                    repeat: Infinity,
+                  },
+                }
+          }
         >
           <p>The one person who knows everything about you.</p>
           <p>And I mean everything.</p>
@@ -113,26 +194,48 @@ export default function MobileHomepage() {
           <p>You know how it is.</p>
         </motion.article>
 
-        <motion.div
-          className={styles.cta}
-          initial={reduceMotion ? false : { opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{
-            duration: reduceMotion ? 0 : 0.55,
-            delay: reduceMotion ? 0 : 1.75,
-            ease: "easeOut",
-          }}
-        >
-          <Link href="/getting-ready" aria-label="Continue to Getting Ready">
-            <Image
-              src="/homepage/getting-ready-cta.png"
-              alt="Getting Ready"
-              width={487}
-              height={125}
-              priority
-            />
-          </Link>
-        </motion.div>
+        <div className={styles.ctaPositioner}>
+          <motion.div
+            className={styles.cta}
+            initial={reduceMotion ? false : { opacity: 0, y: 12.304 }}
+            animate={
+              reduceMotion
+                ? { opacity: 1, y: 0 }
+                : {
+                    opacity: [0, 0, 1, 1],
+                    y: [12.304, 12.304, 0, 0],
+                  }
+            }
+            transition={
+              reduceMotion
+                ? { duration: 0 }
+                : {
+                    opacity: {
+                      duration: TIMELINE_DURATION,
+                      times: [0, 0.6731, 0.8846, 1],
+                      ease: ["linear", "easeOut", "linear"],
+                      repeat: Infinity,
+                    },
+                    y: {
+                      duration: TIMELINE_DURATION,
+                      times: [0, 0.6731, 0.8846, 1],
+                      ease: ["linear", "easeOut", "linear"],
+                      repeat: Infinity,
+                    },
+                  }
+            }
+          >
+            <Link href="/getting-ready" aria-label="Continue to Getting Ready">
+              <Image
+                src="/homepage/getting-ready-cta.png"
+                alt="Getting Ready"
+                width={487}
+                height={125}
+                priority
+              />
+            </Link>
+          </motion.div>
+        </div>
       </div>
     </main>
   );
