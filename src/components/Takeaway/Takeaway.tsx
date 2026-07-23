@@ -47,21 +47,21 @@ export default function Takeaway() {
 
           <motion.button className={`${styles.photo} ${styles.leftPhoto}`} type="button" aria-label="Enlarge takeaway counter photo" onClick={() => open("/takeaway/lightbox/takeaway-01.webp", "Friends ordering takeaway")}
             initial={{ opacity: 0, x: -28, y: 14, rotate: -1.2, scale: .96 }} animate={shown ? { opacity: 1, x: 0, y: 0, rotate: [0, .336, 0], scale: 1 } : undefined}
-            transition={{ opacity: { duration: .32, delay: .25 }, x: { duration: .42, delay: .25 }, y: { duration: .42, delay: .25 }, scale: { duration: .42, delay: .25 }, rotate: { duration: 8, delay: .8, times: [0, .825, 1], ease: "easeInOut", repeat: Infinity } }}>
+            transition={{ opacity: { duration: .32, delay: .25 }, x: { duration: .42, delay: .25 }, y: { duration: .42, delay: .25 }, scale: { duration: .42, delay: .25 }, rotate: { duration: 8, delay: .8, times: [0, .825, 1], ease: "easeInOut", repeat: 0 } }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/takeaway/Standing Together Photo.svg" alt="" />
           </motion.button>
 
           <motion.button className={`${styles.photo} ${styles.rightPhoto}`} type="button" aria-label="Enlarge pizza street photo" onClick={() => open("/takeaway/lightbox/takeaway-03.webp", "Friends eating pizza outside")}
             initial={{ opacity: 0, x: 28, y: 16, rotate: -1.2, scale: .96 }} animate={shown ? { opacity: 1, x: 0, y: 0, rotate: [0, .336, 0], scale: 1 } : undefined}
-            transition={{ opacity: { duration: .46, delay: 4.2 }, x: { duration: .62, delay: 4.2 }, y: { duration: .62, delay: 4.2 }, scale: { duration: .62, delay: 4.2 }, rotate: { duration: 8, delay: 4.82, times: [0, .825, 1], ease: "easeInOut", repeat: Infinity } }}>
+            transition={{ opacity: { duration: .46, delay: 4.2 }, x: { duration: .62, delay: 4.2 }, y: { duration: .62, delay: 4.2 }, scale: { duration: .62, delay: 4.2 }, rotate: { duration: 8, delay: 4.82, times: [0, .825, 1], ease: "easeInOut", repeat: 0 } }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/takeaway/Pizza Street.svg" alt="" />
           </motion.button>
 
           <motion.button className={styles.cutout} type="button" aria-label="Enlarge pizza cutout photo" onClick={() => open("/takeaway/lightbox/takeaway-02.webp", "Friend eating pizza and chips")}
             animate={reduceMotion ? undefined : { x: [0, -6, 2.7, 0], y: [0, 7, -3.15, 0], rotate: [0, -.35, .1925, 0], scale: [1, 1.004, .998, 1] }}
-            transition={{ duration: 6, times: [0, .378, .717, 1], ease: "easeInOut", repeat: Infinity }}>
+            transition={{ duration: 6, times: [0, .378, .717, 1], ease: "easeInOut", repeat: 0 }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/takeaway/HOMEGIRL_OUTSIDE_0757.png" alt="" />
           </motion.button>

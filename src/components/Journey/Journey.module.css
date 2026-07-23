@@ -32,7 +32,7 @@
 .dotOxfordOrange { left: 751px; top: 567px; background: #ff761a; }
 .dotOxfordRed { left: 774px; top: 710px; background: #ef2424; }
 .dotSoho { left: 1317px; top: 428px; background: #ef2424; }
-.card { position: absolute; z-index: 4; margin: 0; padding: 0; border: 0; background: transparent; cursor: zoom-in; animation: card-float 6s ease-in-out infinite; will-change: transform; }
+.card { position: absolute; z-index: 4; margin: 0; padding: 0; border: 0; background: transparent; cursor: zoom-in; animation: card-float 6s ease-in-out 1 both; will-change: transform; }
 .chat { position: absolute; z-index: 8; overflow: hidden; transform-origin: center; }
 .bubbleRight, .bubbleLeft { position: absolute; top: 0; border-radius: 18.5px; }
 .bubbleRight { border-bottom-right-radius: 3px; background: #2d7ff9; }

@@ -53,7 +53,7 @@ export default function Bar() {
           <motion.div
             className={styles.collage}
             animate={reduceMotion ? undefined : { x: [0, 4, -1.8, 0], y: [0, 3, -1.35, 0], rotate: [0, .15, -.0825, 0], scale: [1, 1.003, 1, 1] }}
-            transition={{ duration: 4.5, times: [0, .222, .711, 1], ease: "easeInOut", repeat: Infinity }}
+            transition={{ duration: 4.5, times: [0, .222, .711, 1], ease: "easeInOut", repeat: 0 }}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img className={styles.newspaperTop} src="/bar/Torn Newspaper Strip - Horizontal.png" alt="" />
@@ -101,7 +101,7 @@ export default function Bar() {
             <img className={styles.mojito} src="/bar/Mojito Cocktail.svg" alt="" />
           </motion.div>
 
-          <motion.div className={styles.handbag} animate={reduceMotion ? undefined : { x: [0, 5, -2.25, 0], y: [0, -4, 1.8, 0], rotate: [0, .25, -.1375, 0], scale: [1, 1.008, 1, 1] }} transition={{ duration: 4.5, times: [0, .222, .711, 1], ease: "easeInOut", repeat: Infinity }}>
+          <motion.div className={styles.handbag} animate={reduceMotion ? undefined : { x: [0, 5, -2.25, 0], y: [0, -4, 1.8, 0], rotate: [0, .25, -.1375, 0], scale: [1, 1.008, 1, 1] }} transition={{ duration: 4.5, times: [0, .222, .711, 1], ease: "easeInOut", repeat: 0 }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/bar/Black Handbag.svg" alt="" />
           </motion.div>
@@ -112,7 +112,7 @@ export default function Bar() {
             aria-label="Enlarge friends portrait"
             onClick={() => setSelectedImage({ src: "/bar/lightbox/bar-03.webp", alt: "Friends dressed for the bar" })}
             animate={reduceMotion ? undefined : { x: [0, -3.5, 1.75, 0], y: [0, -3, 1.5, 0], rotate: [0, -.12, .06, 0], scale: [1, 1.0035, 1.001, 1] }}
-            transition={{ duration: 5.4, times: [0, .28, .72, 1], ease: "easeInOut", repeat: Infinity }}
+            transition={{ duration: 5.4, times: [0, .28, .72, 1], ease: "easeInOut", repeat: 0 }}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/bar/HOMEGIRL_OUTSIDE_0384 1.png" alt="" />

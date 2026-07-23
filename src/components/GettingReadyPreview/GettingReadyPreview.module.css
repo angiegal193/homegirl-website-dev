@@ -50,7 +50,7 @@
   border: 0;
   background: transparent;
   cursor: zoom-in;
-  animation: ambient-card 6s ease-in-out infinite;
+  animation: ambient-card 6s ease-in-out 1 both;
   transform-origin: center;
   will-change: transform;
 }

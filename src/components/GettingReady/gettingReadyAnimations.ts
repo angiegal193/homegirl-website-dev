@@ -2,14 +2,8 @@ import type { Easing } from "motion/react";
 
 /**
  * Transcribed from Figma frame 391:2 (getting-ready page), motion/react
- * codeSnippets. Two distinct behaviors, per spec:
- *
- * - Photo card motion (`cardAnims`) is a genuine ambient loop —
- *   `repeat: Infinity` is kept.
- * - Everything else (chat bubbles, typing indicator, CTA reveal, cutout
- *   polaroids) is an entrance-once reveal — `repeat: Infinity` is
- *   stripped, matching the Hometime chat rule: play once on
- *   scroll-into-view, hold the final state.
+ * codeSnippets. Every animation now plays once and holds its final state,
+ * including the photo-card motion.
  */
 
 const D = 6;
@@ -36,88 +30,88 @@ export const cardAnims: Record<
     initial: { rotate: 0, scaleX: 1, scaleY: 1, x: 0, y: 0 },
     animate: { rotate: [0, 0.6, -0.33, 0], scaleX: [1, 1.006, 0.998, 1], scaleY: [1, 1.006, 0.998, 1], x: [0, -8, 3.6, 0], y: [0, 5, -2.25, 0] },
     transition: {
-      rotate: { duration: D, times: [0, 0.3667, 0.7083, 1], ease: "easeInOut", repeat: Infinity },
-      scaleX: { duration: D, times: [0, 0.3667, 0.7083, 1], ease: "easeInOut", repeat: Infinity },
-      scaleY: { duration: D, times: [0, 0.3667, 0.7083, 1], ease: "easeInOut", repeat: Infinity },
-      x: { duration: D, times: [0, 0.3667, 0.7083, 1], ease: ["easeInOut", "easeInOut", "easeInOut"], repeat: Infinity },
-      y: { duration: D, times: [0, 0.3667, 0.7083, 1], ease: ["easeInOut", "easeInOut", "easeInOut"], repeat: Infinity },
+      rotate: { duration: D, times: [0, 0.3667, 0.7083, 1], ease: "easeInOut", repeat: 0 },
+      scaleX: { duration: D, times: [0, 0.3667, 0.7083, 1], ease: "easeInOut", repeat: 0 },
+      scaleY: { duration: D, times: [0, 0.3667, 0.7083, 1], ease: "easeInOut", repeat: 0 },
+      x: { duration: D, times: [0, 0.3667, 0.7083, 1], ease: ["easeInOut", "easeInOut", "easeInOut"], repeat: 0 },
+      y: { duration: D, times: [0, 0.3667, 0.7083, 1], ease: ["easeInOut", "easeInOut", "easeInOut"], repeat: 0 },
     },
   },
   card02: {
     initial: { rotate: 0, scaleX: 1, scaleY: 1, x: 0, y: 0 },
     animate: { rotate: [0, -0.5, 0.275, 0], scaleX: [1, 1.004, 0.998, 1], scaleY: [1, 1.004, 0.998, 1], x: [0, 0, 6, -2.7, 0], y: [0, 0, -7, 3.15, 0] },
     transition: {
-      rotate: { duration: D, times: [0, 0.3767, 0.715, 1], ease: "easeInOut", repeat: Infinity },
-      scaleX: { duration: D, times: [0, 0.3767, 0.715, 1], ease: "easeInOut", repeat: Infinity },
-      scaleY: { duration: D, times: [0, 0.3767, 0.715, 1], ease: "easeInOut", repeat: Infinity },
-      x: { duration: D, times: [0, 0.0167, 0.3767, 0.715, 1], ease: LOOP, repeat: Infinity },
-      y: { duration: D, times: [0, 0.0167, 0.3767, 0.715, 1], ease: LOOP, repeat: Infinity },
+      rotate: { duration: D, times: [0, 0.3767, 0.715, 1], ease: "easeInOut", repeat: 0 },
+      scaleX: { duration: D, times: [0, 0.3767, 0.715, 1], ease: "easeInOut", repeat: 0 },
+      scaleY: { duration: D, times: [0, 0.3767, 0.715, 1], ease: "easeInOut", repeat: 0 },
+      x: { duration: D, times: [0, 0.0167, 0.3767, 0.715, 1], ease: LOOP, repeat: 0 },
+      y: { duration: D, times: [0, 0.0167, 0.3767, 0.715, 1], ease: LOOP, repeat: 0 },
     },
   },
   card03: {
     initial: { rotate: 0, scaleX: 1, scaleY: 1, x: 0, y: 0 },
     animate: { rotate: [0, -0.4, 0.22, 0], scaleX: [1, 1.005, 0.998, 1], scaleY: [1, 1.005, 0.998, 1], x: [0, 0, 7, -3.15, 0], y: [0, 0, 6, -2.7, 0] },
     transition: {
-      rotate: { duration: D, times: [0, 0.3717, 0.7117, 1], ease: "easeInOut", repeat: Infinity },
-      scaleX: { duration: D, times: [0, 0.3717, 0.7117, 1], ease: "easeInOut", repeat: Infinity },
-      scaleY: { duration: D, times: [0, 0.3717, 0.7117, 1], ease: "easeInOut", repeat: Infinity },
-      x: { duration: D, times: [0, 0.0083, 0.3717, 0.7117, 1], ease: LOOP, repeat: Infinity },
-      y: { duration: D, times: [0, 0.0083, 0.3717, 0.7117, 1], ease: LOOP, repeat: Infinity },
+      rotate: { duration: D, times: [0, 0.3717, 0.7117, 1], ease: "easeInOut", repeat: 0 },
+      scaleX: { duration: D, times: [0, 0.3717, 0.7117, 1], ease: "easeInOut", repeat: 0 },
+      scaleY: { duration: D, times: [0, 0.3717, 0.7117, 1], ease: "easeInOut", repeat: 0 },
+      x: { duration: D, times: [0, 0.0083, 0.3717, 0.7117, 1], ease: LOOP, repeat: 0 },
+      y: { duration: D, times: [0, 0.0083, 0.3717, 0.7117, 1], ease: LOOP, repeat: 0 },
     },
   },
   card04: {
     initial: { rotate: 0, scaleX: 1, scaleY: 1, x: 0, y: 0 },
     animate: { rotate: [0, 0.7, -0.385, 0], scaleX: [1, 1.008, 0.998, 1], scaleY: [1, 1.008, 0.998, 1], x: [0, 0, -5, 2.25, 0], y: [0, 0, -8, 3.6, 0] },
     transition: {
-      rotate: { duration: D, times: [0, 0.3883, 0.7233, 1], ease: "easeInOut", repeat: Infinity },
-      scaleX: { duration: D, times: [0, 0.3883, 0.7233, 1], ease: "easeInOut", repeat: Infinity },
-      scaleY: { duration: D, times: [0, 0.3883, 0.7233, 1], ease: "easeInOut", repeat: Infinity },
-      x: { duration: D, times: [0, 0.0367, 0.3883, 0.7233, 1], ease: LOOP, repeat: Infinity },
-      y: { duration: D, times: [0, 0.0367, 0.3883, 0.7233, 1], ease: LOOP, repeat: Infinity },
+      rotate: { duration: D, times: [0, 0.3883, 0.7233, 1], ease: "easeInOut", repeat: 0 },
+      scaleX: { duration: D, times: [0, 0.3883, 0.7233, 1], ease: "easeInOut", repeat: 0 },
+      scaleY: { duration: D, times: [0, 0.3883, 0.7233, 1], ease: "easeInOut", repeat: 0 },
+      x: { duration: D, times: [0, 0.0367, 0.3883, 0.7233, 1], ease: LOOP, repeat: 0 },
+      y: { duration: D, times: [0, 0.0367, 0.3883, 0.7233, 1], ease: LOOP, repeat: 0 },
     },
   },
   card05: {
     initial: { rotate: 0, scaleX: 1, scaleY: 1, x: 0, y: 0 },
     animate: { rotate: [0, -0.55, 0.303, 0], scaleX: [1, 1.004, 0.998, 1], scaleY: [1, 1.004, 0.998, 1], x: [0, 0, 5, -2.25, 0], y: [0, 0, 5, -2.25, 0] },
     transition: {
-      rotate: { duration: D, times: [0, 0.3833, 0.7183, 1], ease: "easeInOut", repeat: Infinity },
-      scaleX: { duration: D, times: [0, 0.3833, 0.7183, 1], ease: "easeInOut", repeat: Infinity },
-      scaleY: { duration: D, times: [0, 0.3833, 0.7183, 1], ease: "easeInOut", repeat: Infinity },
-      x: { duration: D, times: [0, 0.0267, 0.3833, 0.7183, 1], ease: LOOP, repeat: Infinity },
-      y: { duration: D, times: [0, 0.0267, 0.3833, 0.7183, 1], ease: LOOP, repeat: Infinity },
+      rotate: { duration: D, times: [0, 0.3833, 0.7183, 1], ease: "easeInOut", repeat: 0 },
+      scaleX: { duration: D, times: [0, 0.3833, 0.7183, 1], ease: "easeInOut", repeat: 0 },
+      scaleY: { duration: D, times: [0, 0.3833, 0.7183, 1], ease: "easeInOut", repeat: 0 },
+      x: { duration: D, times: [0, 0.0267, 0.3833, 0.7183, 1], ease: LOOP, repeat: 0 },
+      y: { duration: D, times: [0, 0.0267, 0.3833, 0.7183, 1], ease: LOOP, repeat: 0 },
     },
   },
   card06: {
     initial: { rotate: 0, scaleX: 1, scaleY: 1, x: 0, y: 0 },
     animate: { rotate: [0, 0.5, -0.275, 0], scaleX: [1, 1.009, 0.998, 1], scaleY: [1, 1.009, 0.998, 1], x: [0, 0, -4, 1.8, 0], y: [0, 0, -9, 4.05, 0] },
     transition: {
-      rotate: { duration: D, times: [0, 0.3967, 0.7283, 1], ease: "easeInOut", repeat: Infinity },
-      scaleX: { duration: D, times: [0, 0.3967, 0.7283, 1], ease: "easeInOut", repeat: Infinity },
-      scaleY: { duration: D, times: [0, 0.3967, 0.7283, 1], ease: "easeInOut", repeat: Infinity },
-      x: { duration: D, times: [0, 0.05, 0.3967, 0.7283, 1], ease: LOOP, repeat: Infinity },
-      y: { duration: D, times: [0, 0.05, 0.3967, 0.7283, 1], ease: LOOP, repeat: Infinity },
+      rotate: { duration: D, times: [0, 0.3967, 0.7283, 1], ease: "easeInOut", repeat: 0 },
+      scaleX: { duration: D, times: [0, 0.3967, 0.7283, 1], ease: "easeInOut", repeat: 0 },
+      scaleY: { duration: D, times: [0, 0.3967, 0.7283, 1], ease: "easeInOut", repeat: 0 },
+      x: { duration: D, times: [0, 0.05, 0.3967, 0.7283, 1], ease: LOOP, repeat: 0 },
+      y: { duration: D, times: [0, 0.05, 0.3967, 0.7283, 1], ease: LOOP, repeat: 0 },
     },
   },
   card07: {
     initial: { rotate: 0, scaleX: 1, scaleY: 1, x: 0, y: 0 },
     animate: { rotate: [0, -0.45, 0.247, 0], scaleX: [1, 1.006, 0.998, 1], scaleY: [1, 1.006, 0.998, 1], x: [0, 0, 7, -3.15, 0], y: [0, 0, -5, 2.25, 0] },
     transition: {
-      rotate: { duration: D, times: [0, 0.39, 0.725, 1], ease: "easeInOut", repeat: Infinity },
-      scaleX: { duration: D, times: [0, 0.39, 0.725, 1], ease: "easeInOut", repeat: Infinity },
-      scaleY: { duration: D, times: [0, 0.39, 0.725, 1], ease: "easeInOut", repeat: Infinity },
-      x: { duration: D, times: [0, 0.04, 0.39, 0.725, 1], ease: LOOP, repeat: Infinity },
-      y: { duration: D, times: [0, 0.04, 0.39, 0.725, 1], ease: LOOP, repeat: Infinity },
+      rotate: { duration: D, times: [0, 0.39, 0.725, 1], ease: "easeInOut", repeat: 0 },
+      scaleX: { duration: D, times: [0, 0.39, 0.725, 1], ease: "easeInOut", repeat: 0 },
+      scaleY: { duration: D, times: [0, 0.39, 0.725, 1], ease: "easeInOut", repeat: 0 },
+      x: { duration: D, times: [0, 0.04, 0.39, 0.725, 1], ease: LOOP, repeat: 0 },
+      y: { duration: D, times: [0, 0.04, 0.39, 0.725, 1], ease: LOOP, repeat: 0 },
     },
   },
   card08: {
     initial: { rotate: 0, scaleX: 1, scaleY: 1, x: 0, y: 0 },
     animate: { rotate: [0, 0.35, -0.192, 0], scaleX: [1, 1.004, 0.998, 1], scaleY: [1, 1.004, 0.998, 1], x: [0, 0, -6, 2.7, 0], y: [0, 0, 7, -3.15, 0] },
     transition: {
-      rotate: { duration: D, times: [0, 0.3783, 0.7167, 1], ease: "easeInOut", repeat: Infinity },
-      scaleX: { duration: D, times: [0, 0.3783, 0.7167, 1], ease: "easeInOut", repeat: Infinity },
-      scaleY: { duration: D, times: [0, 0.3783, 0.7167, 1], ease: "easeInOut", repeat: Infinity },
-      x: { duration: D, times: [0, 0.02, 0.3783, 0.7167, 1], ease: LOOP, repeat: Infinity },
-      y: { duration: D, times: [0, 0.02, 0.3783, 0.7167, 1], ease: LOOP, repeat: Infinity },
+      rotate: { duration: D, times: [0, 0.3783, 0.7167, 1], ease: "easeInOut", repeat: 0 },
+      scaleX: { duration: D, times: [0, 0.3783, 0.7167, 1], ease: "easeInOut", repeat: 0 },
+      scaleY: { duration: D, times: [0, 0.3783, 0.7167, 1], ease: "easeInOut", repeat: 0 },
+      x: { duration: D, times: [0, 0.02, 0.3783, 0.7167, 1], ease: LOOP, repeat: 0 },
+      y: { duration: D, times: [0, 0.02, 0.3783, 0.7167, 1], ease: LOOP, repeat: 0 },
     },
   },
 };

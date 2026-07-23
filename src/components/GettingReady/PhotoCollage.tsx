@@ -28,9 +28,8 @@ const CARDS: CardSpec[] = [
 ];
 
 /**
- * The 8 masked/rotated photo collage cards. Ambient loop motion —
- * repeat: Infinity is intentional here (unlike the chat/CTA/cutouts,
- * this isn't a scroll-triggered reveal, it runs continuously).
+ * The 8 masked/rotated photo collage cards. Their subtle motion plays once
+ * with the rest of the page and then holds its final state.
  */
 export default function PhotoCollage() {
   return (

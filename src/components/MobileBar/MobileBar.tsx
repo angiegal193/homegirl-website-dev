@@ -27,22 +27,22 @@ export default function MobileBar() {
         {photos.map((photo, index) => (
           <motion.button key={photo.key} type="button" className={`${styles.photo} ${styles[photo.className]}`} aria-label={`Enlarge ${photo.alt}`} onClick={() => setSelected({ src: photo.full, alt: photo.alt })}
             initial={reduceMotion ? false : { opacity: 0, x: index === 1 ? 18 : -18, y: 12, scale: .96 }} animate={{ opacity: 1, x: reduceMotion ? 0 : [0, index % 2 ? 2.5 : -2.8, 0], y: reduceMotion ? 0 : [0, index % 2 ? -2.5 : 2.4, 0], scale: 1 }}
-            transition={{ opacity: { duration: .42, delay: photo.delay }, scale: { duration: .42, delay: photo.delay }, x: { duration: 5, repeat: Infinity, ease: "easeInOut" }, y: { duration: 5, repeat: Infinity, ease: "easeInOut" } }}>
+            transition={{ opacity: { duration: .42, delay: photo.delay }, scale: { duration: .42, delay: photo.delay }, x: { duration: 5, repeat: 0, ease: "easeInOut" }, y: { duration: 5, repeat: 0, ease: "easeInOut" } }}>
             <img src={photo.src} alt="" />
             {photo.key === "wine" && <><img className={styles.wineWrap} src="/bar/top-right-wrap.png" alt="" /><img className={styles.winePaper} src="/bar/top-right-paper.png" alt="" /></>}
           </motion.button>
         ))}
 
         <motion.button type="button" className={`${styles.photo} ${styles.mirrorPhoto}`} aria-label="Enlarge mirror selfie" onClick={() => setSelected({ src: "/bar/mirror-selfie.jpg", alt: "Mirror selfie at the bar" })}
-          initial={reduceMotion ? false : { opacity: 0, y: 20, scale: .96 }} animate={{ opacity: 1, y: reduceMotion ? 0 : [0, -2.5, 0], scale: 1 }} transition={{ opacity: { delay: .85 }, scale: { delay: .85 }, y: { duration: 5, repeat: Infinity, ease: "easeInOut" } }}>
+          initial={reduceMotion ? false : { opacity: 0, y: 20, scale: .96 }} animate={{ opacity: 1, y: reduceMotion ? 0 : [0, -2.5, 0], scale: 1 }} transition={{ opacity: { delay: .85 }, scale: { delay: .85 }, y: { duration: 5, repeat: 0, ease: "easeInOut" } }}>
           <img src="/bar/mirror-selfie.jpg" alt="" /><img className={styles.mirrorWrap} src="/bar/mirror-wrap.png" alt="" />
         </motion.button>
 
-        <motion.img className={styles.handbag} src="/bar/Black Handbag.svg" alt="" animate={reduceMotion ? undefined : { x: [0, 3, 0], y: [0, -3, 0], rotate: [0, .8, 0] }} transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }} />
+        <motion.img className={styles.handbag} src="/bar/Black Handbag.svg" alt="" animate={reduceMotion ? undefined : { x: [0, 3, 0], y: [0, -3, 0], rotate: [0, .8, 0] }} transition={{ duration: 5, repeat: 0, ease: "easeInOut" }} />
         <motion.img className={styles.date} src="/bar/Date Text - 19.10.25.png" alt="19.10.25" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: reduceMotion ? 0 : 1.2 }} />
 
         <motion.button type="button" className={styles.cutout} aria-label="Enlarge friends portrait" onClick={() => setSelected({ src: "/bar/lightbox/bar-03.webp", alt: "Friends dressed for the bar" })}
-          initial={reduceMotion ? false : { opacity: 0, y: 24, scale: .96 }} animate={{ opacity: 1, y: reduceMotion ? 0 : [0, -3, 0], scale: 1 }} transition={{ opacity: { duration: .5, delay: 1.35 }, scale: { duration: .5, delay: 1.35 }, y: { duration: 5.6, repeat: Infinity, ease: "easeInOut" } }}>
+          initial={reduceMotion ? false : { opacity: 0, y: 24, scale: .96 }} animate={{ opacity: 1, y: reduceMotion ? 0 : [0, -3, 0], scale: 1 }} transition={{ opacity: { duration: .5, delay: 1.35 }, scale: { duration: .5, delay: 1.35 }, y: { duration: 5.6, repeat: 0, ease: "easeInOut" } }}>
           <img src="/bar/HOMEGIRL_OUTSIDE_0384 1.png" alt="" />
         </motion.button>
 

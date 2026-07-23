@@ -37,7 +37,7 @@ export default function MobileGettingReady() {
         <div className={styles.collage}>
           {cards.map((card, index) => (
             <motion.button key={card.n} type="button" className={styles.card} style={{ left: card.x, top: card.y, width: card.w, height: card.h, zIndex: card.z }} aria-label={`Enlarge Getting Ready photo ${card.n}`} onClick={() => setSelected({ src: `/getting-ready-preview/lightbox/card-${String(card.n).padStart(2, "0")}.webp`, alt: `Getting Ready photo ${card.n}` })}
-              animate={reduceMotion ? undefined : { x: [0, index % 2 ? 2.8 : -3.3, 0], y: [0, index % 2 ? -3 : 2.5, 0], rotate: [0, index % 2 ? -0.45 : 0.55, 0], scale: [1, 1.006, 1] }} transition={{ duration: 6.4, delay: index * -0.18, ease: "easeInOut", repeat: Infinity }}>
+              animate={reduceMotion ? undefined : { x: [0, index % 2 ? 2.8 : -3.3, 0], y: [0, index % 2 ? -3 : 2.5, 0], rotate: [0, index % 2 ? -0.45 : 0.55, 0], scale: [1, 1.006, 1] }} transition={{ duration: 6.4, delay: index * -0.18, ease: "easeInOut", repeat: 0 }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}<img src={`/getting-ready-preview/card-${String(card.n).padStart(2, "0")}.webp`} alt="" />
             </motion.button>
           ))}

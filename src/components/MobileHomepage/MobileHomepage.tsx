@@ -59,19 +59,19 @@ export default function MobileHomepage() {
                   duration: TIMELINE_DURATION,
                   times: [0, 0.2308, 1],
                   ease: ["easeOut", "linear"],
-                  repeat: Infinity,
+                  repeat: 0,
                 },
                 scaleX: {
                   duration: TIMELINE_DURATION,
                   times: [0, 0.5769, 1],
                   ease: ["easeOut", "linear"],
-                  repeat: Infinity,
+                  repeat: 0,
                 },
                 scaleY: {
                   duration: TIMELINE_DURATION,
                   times: [0, 0.5769, 1],
                   ease: ["easeOut", "linear"],
-                  repeat: Infinity,
+                  repeat: 0,
                 },
               }
         }
@@ -117,25 +117,25 @@ export default function MobileHomepage() {
                     duration: TIMELINE_DURATION,
                     times: [0, 0.3154, 1],
                     ease: ["easeOut", "linear"],
-                    repeat: Infinity,
+                    repeat: 0,
                   },
                   scaleX: {
                     duration: TIMELINE_DURATION,
                     times: [0, 0.3154, 1],
                     ease: [titleSpring, "linear"],
-                    repeat: Infinity,
+                    repeat: 0,
                   },
                   scaleY: {
                     duration: TIMELINE_DURATION,
                     times: [0, 0.3154, 1],
                     ease: [titleSpring, "linear"],
-                    repeat: Infinity,
+                    repeat: 0,
                   },
                   y: {
                     duration: TIMELINE_DURATION,
                     times: [0, 0.3154, 1],
                     ease: ["easeOut", "linear"],
-                    repeat: Infinity,
+                    repeat: 0,
                   },
                 }
           }
@@ -161,7 +161,7 @@ export default function MobileHomepage() {
                     duration: TIMELINE_DURATION,
                     times: [0, 0.0769, 0.4231, 1],
                     ease: ["linear", "easeOut", "linear"],
-                    repeat: Infinity,
+                    repeat: 0,
                   },
                 }
           }
@@ -214,13 +214,13 @@ export default function MobileHomepage() {
                       duration: TIMELINE_DURATION,
                       times: [0, 0.6731, 0.8846, 1],
                       ease: ["linear", "easeOut", "linear"],
-                      repeat: Infinity,
+                      repeat: 0,
                     },
                     y: {
                       duration: TIMELINE_DURATION,
                       times: [0, 0.6731, 0.8846, 1],
                       ease: ["linear", "easeOut", "linear"],
-                      repeat: Infinity,
+                      repeat: 0,
                     },
                   }
             }
