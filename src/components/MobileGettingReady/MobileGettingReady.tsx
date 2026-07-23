@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion, useReducedMotion } from "motion/react";
-import { useState } from "react";
+import { type CSSProperties, useState } from "react";
 import MobileLightbox, { type MobileLightboxImage } from "@/components/MobileLightbox/MobileLightbox";
 import MobileStoryStage from "@/components/MobileStoryStage/MobileStoryStage";
 import styles from "./MobileGettingReady.module.css";
@@ -27,28 +27,43 @@ const messages = [
   { text: "here!!!! xxxx", time: "17:32", side: "right", top: 737, width: 92 },
 ] as const;
 
+const ARTBOARD_WIDTH = 390;
+const COLLAGE_HEIGHT = 454;
+
+function collageItemStyle(item: { x: number; y: number; w: number; h: number }): CSSProperties {
+  const centerX = ((item.x + item.w / 2) / ARTBOARD_WIDTH) * 100;
+  const centerY = ((item.y + item.h / 2) / COLLAGE_HEIGHT) * 100;
+
+  return {
+    left: `calc(${centerX}% - ${item.w / 2} * var(--art-unit))`,
+    top: `calc(${centerY}% - ${item.h / 2} * var(--art-unit))`,
+    width: `calc(${item.w} * var(--art-unit))`,
+    height: `calc(${item.h} * var(--art-unit))`,
+  };
+}
+
 export default function MobileGettingReady() {
   const reduceMotion = useReducedMotion();
   const [selected, setSelected] = useState<MobileLightboxImage | null>(null);
 
   return (
     <>
-      <MobileStoryStage active="getting-ready" label="Getting Ready">
+      <MobileStoryStage active="getting-ready" label="Getting Ready" fluid>
         <div className={styles.collage}>
           {cards.map((card, index) => (
-            <motion.button key={card.n} type="button" className={styles.card} style={{ left: card.x, top: card.y, width: card.w, height: card.h, zIndex: card.z }} aria-label={`Enlarge Getting Ready photo ${card.n}`} onClick={() => setSelected({ src: `/getting-ready-preview/lightbox/card-${String(card.n).padStart(2, "0")}.webp`, alt: `Getting Ready photo ${card.n}` })}
+            <motion.button key={card.n} type="button" className={styles.card} style={{ ...collageItemStyle(card), zIndex: card.z }} aria-label={`Enlarge Getting Ready photo ${card.n}`} onClick={() => setSelected({ src: `/getting-ready-preview/lightbox/card-${String(card.n).padStart(2, "0")}.webp`, alt: `Getting Ready photo ${card.n}` })}
               animate={reduceMotion ? undefined : { x: [0, index % 2 ? 2.8 : -3.3, 0], y: [0, index % 2 ? -3 : 2.5, 0], rotate: [0, index % 2 ? -0.45 : 0.55, 0], scale: [1, 1.006, 1] }} transition={{ duration: 6.4, delay: index * -0.18, ease: "easeInOut", repeat: 0 }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}<img src={`/getting-ready-preview/card-${String(card.n).padStart(2, "0")}.webp`} alt="" />
             </motion.button>
           ))}
-          <motion.button type="button" className={`${styles.cutout} ${styles.cutoutLeft}`} aria-label="Enlarge friends laughing photo" onClick={() => setSelected({ src: "/getting-ready-preview/cutout-08.webp", alt: "Friends laughing while getting ready" })} initial={reduceMotion ? false : { opacity: 0, x: 8, y: -5, scale: .955 }} animate={{ opacity: 1, x: 0, y: 0, scale: 1 }} transition={{ duration: .42, delay: .9, ease: "easeOut" }}>{/* eslint-disable-next-line @next/next/no-img-element */}<img src="/getting-ready-preview/cutout-08.webp" alt="" /></motion.button>
-          <motion.button type="button" className={`${styles.cutout} ${styles.cutoutRight}`} aria-label="Enlarge friends hugging photo" onClick={() => setSelected({ src: "/getting-ready-preview/cutout-11.webp", alt: "Friends hugging while getting ready" })} initial={reduceMotion ? false : { opacity: 0, x: -14, y: 12, scale: .955 }} animate={{ opacity: 1, x: 0, y: 0, scale: 1 }} transition={{ duration: .42, delay: 1.15, ease: "easeOut" }}>{/* eslint-disable-next-line @next/next/no-img-element */}<img src="/getting-ready-preview/cutout-11.webp" alt="" /></motion.button>
+          <motion.button type="button" className={`${styles.cutout} ${styles.cutoutLeft}`} style={collageItemStyle({ x: -13, y: 197, w: 175, h: 206 })} aria-label="Enlarge friends laughing photo" onClick={() => setSelected({ src: "/getting-ready-preview/cutout-08.webp", alt: "Friends laughing while getting ready" })} initial={reduceMotion ? false : { opacity: 0, x: 8, y: -5, scale: .955 }} animate={{ opacity: 1, x: 0, y: 0, scale: 1 }} transition={{ duration: .42, delay: .9, ease: "easeOut" }}>{/* eslint-disable-next-line @next/next/no-img-element */}<img src="/getting-ready-preview/cutout-08.webp" alt="" /></motion.button>
+          <motion.button type="button" className={`${styles.cutout} ${styles.cutoutRight}`} style={collageItemStyle({ x: 227, y: 245, w: 163, h: 209 })} aria-label="Enlarge friends hugging photo" onClick={() => setSelected({ src: "/getting-ready-preview/cutout-11.webp", alt: "Friends hugging while getting ready" })} initial={reduceMotion ? false : { opacity: 0, x: -14, y: 12, scale: .955 }} animate={{ opacity: 1, x: 0, y: 0, scale: 1 }} transition={{ duration: .42, delay: 1.15, ease: "easeOut" }}>{/* eslint-disable-next-line @next/next/no-img-element */}<img src="/getting-ready-preview/cutout-11.webp" alt="" /></motion.button>
           {/* eslint-disable-next-line @next/next/no-img-element */}<img className={styles.eyeshadow} src="/getting-ready-preview/eyeshadow.svg" alt="" />
           {/* eslint-disable-next-line @next/next/no-img-element */}<img className={styles.lipstick} src="/getting-ready-preview/lipstick.svg" alt="" />
         </div>
 
         {messages.map((message, index) => (
-          <motion.div key={message.text} className={`${styles.message} ${message.side === "right" ? styles.right : styles.left}`} style={{ top: message.top, width: message.width }} initial={reduceMotion ? false : { opacity: 0, y: 6, scale: .95 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ duration: .3, delay: reduceMotion ? 0 : .12 + index * .76, ease: "easeOut" }}>
+          <motion.div key={message.text} className={`${styles.message} ${message.side === "right" ? styles.right : styles.left}`} style={{ top: `${(message.top / 844) * 100}%`, width: `${(message.width / 390) * 100}%` }} initial={reduceMotion ? false : { opacity: 0, y: 6, scale: .95 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ duration: .3, delay: reduceMotion ? 0 : .12 + index * .76, ease: "easeOut" }}>
             <span>{message.text}</span><small>{message.time}</small>
           </motion.div>
         ))}

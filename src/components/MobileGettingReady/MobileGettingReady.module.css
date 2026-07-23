@@ -1,18 +1,38 @@
-.collage { position: absolute; inset: 0; }
+.collage {
+  --art-unit: min(0.25641cqw, 0.22026cqh);
+  position: absolute;
+  inset: 0 0 auto;
+  height: 53.79%;
+  container-type: size;
+}
 .card, .cutout { position: absolute; padding: 0; border: 0; background: transparent; cursor: zoom-in; transform-origin: center; }
 .card img, .cutout img { display: block; width: 100%; height: 100%; object-fit: contain; }
 .cutout { z-index: 11; }
-.cutoutLeft { left: -13px; top: 197px; width: 175px; height: 206px; rotate: 13deg; }
-.cutoutRight { left: 227px; top: 245px; width: 163px; height: 209px; }
-.eyeshadow { position: absolute; z-index: 10; left: 75px; top: 82px; width: 69px; }
-.lipstick { position: absolute; z-index: 12; left: 164px; top: 350px; width: 26px; }
-.message { position: absolute; z-index: 20; display: flex; min-height: 26px; align-items: center; border-radius: 12px; padding: 6px 11px; color: #fff; font: 400 9.44px/1.18 Arial, sans-serif; transform-origin: center; }
+.cutoutLeft { rotate: 13deg; }
+.eyeshadow { position: absolute; z-index: 10; left: 19.23%; top: 18.06%; width: calc(69 * var(--art-unit)); }
+.lipstick { position: absolute; z-index: 12; left: 42.05%; top: 77.09%; width: calc(26 * var(--art-unit)); }
+.message {
+  position: absolute;
+  z-index: 20;
+  display: flex;
+  min-height: clamp(26px, 6.66vw, 52px);
+  align-items: center;
+  border-radius: clamp(12px, 3.08vw, 24px);
+  padding: clamp(6px, 1.54vw, 12px) clamp(11px, 2.82vw, 22px);
+  color: #fff;
+  font: 400 clamp(9.44px, 2.42vw, 18.88px)/1.18 Arial, sans-serif;
+  transform-origin: center;
+}
 .message span { display: block; }
-.message small { position: absolute; top: calc(100% + 4px); color: #666; font-size: 6.92px; white-space: nowrap; }
-.left { left: 36px; border-bottom-left-radius: 2px; background: #3a3a3c; }
+.message small { position: absolute; top: calc(100% + clamp(4px, 1.03vw, 8px)); color: #666; font-size: clamp(6.92px, 1.77vw, 13.84px); white-space: nowrap; }
+.left { left: 9.23%; border-bottom-left-radius: 2px; background: #3a3a3c; }
 .left small { left: 1px; }
-.right { right: 34px; border-bottom-right-radius: 2px; background: #2d7ff9; }
+.right { right: 8.72%; border-bottom-right-radius: 2px; background: #2d7ff9; }
 .right small { right: 1px; }
-.cta { position: absolute; z-index: 22; left: 111px; bottom: 25px; display: block; width: 162px; height: 70px; }
-.cta img { position: absolute; inset: 0; display: block; width: 162px; height: 51px; }
-.cta .arrow { left: 31px; top: 46px; width: 114px; height: 10px; }
+.cta { position: absolute; z-index: 22; left: 50%; bottom: 2.96%; display: block; width: min(41.54vw, 31dvh); aspect-ratio: 162 / 70; transform: translateX(-50%); }
+.cta img { position: absolute; inset: 0; display: block; width: 100%; height: 72.86%; }
+.cta .arrow { left: 19.14%; top: 65.71%; width: 70.37%; height: 14.29%; }
+
+@media (prefers-reduced-motion: reduce) {
+  .card, .cutout, .message, .cta img { transition: none !important; }
+}

@@ -12,10 +12,11 @@ const DESIGN_HEIGHT = 844;
 interface MobileStoryStageProps {
   active: NavTab;
   children: ReactNode;
+  fluid?: boolean;
   label: string;
 }
 
-export default function MobileStoryStage({ active, children, label }: MobileStoryStageProps) {
+export default function MobileStoryStage({ active, children, fluid = false, label }: MobileStoryStageProps) {
   const rootRef = useRef<HTMLElement>(null);
   const [scale, setScale] = useState(1);
 
@@ -34,7 +35,10 @@ export default function MobileStoryStage({ active, children, label }: MobileStor
       <Image src="/homepage/background.png" alt="" fill priority sizes="100vw" className={styles.background} />
       <div className={styles.shade} aria-hidden="true" />
       <Nav active={active} />
-      <div className={styles.stage} style={{ transform: `translate(-50%, -50%) scale(${scale})` }}>
+      <div
+        className={`${styles.stage} ${fluid ? styles.fluidStage : ""}`}
+        style={fluid ? undefined : { transform: `translate(-50%, -50%) scale(${scale})` }}
+      >
         {children}
       </div>
     </main>

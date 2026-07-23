@@ -13,20 +13,22 @@ import { useEffect, useState } from "react";
 export default function ResponsivePage({
   desktop,
   mobile,
+  mobileQuery = "(max-width: 820px)",
 }: {
   desktop: ReactNode;
   mobile?: ReactNode;
+  mobileQuery?: string;
 }) {
   const [useMobile, setUseMobile] = useState(false);
 
   useEffect(() => {
-    const media = window.matchMedia("(max-width: 820px)");
+    const media = window.matchMedia(mobileQuery);
     const update = () => setUseMobile(media.matches);
 
     update();
     media.addEventListener("change", update);
     return () => media.removeEventListener("change", update);
-  }, []);
+  }, [mobileQuery]);
 
   return useMobile && mobile ? mobile : desktop;
 }
