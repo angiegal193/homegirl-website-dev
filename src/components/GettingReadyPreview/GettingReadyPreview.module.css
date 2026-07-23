@@ -77,7 +77,6 @@
 .cutoutTop {
   position: absolute;
   z-index: 7;
-  top: 0;
   left: 770px;
   width: 258px;
   height: 344px;
@@ -91,7 +90,6 @@
   position: absolute;
   z-index: 8;
   left: -8px;
-  top: 410px;
   width: 382px;
   height: 468px;
   padding: 0;

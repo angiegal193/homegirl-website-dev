@@ -15,6 +15,7 @@ import styles from "./GettingReadyPreview.module.css";
 
 const WIDTH = 1440;
 const HEIGHT = 830;
+const COLLAGE_TOP_OFFSET = -40;
 
 const cards = [
   { src: "card-01.webp", x: -49, y: 210, w: 321, h: 326, r1: "0.6deg", r2: "-0.33deg", x1: "-8px", x2: "3.6px", y1: "5px", y2: "-2.25px", s1: "1.006", s2: ".998" },
@@ -106,7 +107,7 @@ export default function GettingReadyPreview() {
               })}
               style={{
                 left: card.x,
-                top: card.y,
+                top: card.y + COLLAGE_TOP_OFFSET,
                 width: card.w,
                 height: card.h,
                 animationDelay: `${index * -0.31}s`,
@@ -126,7 +127,7 @@ export default function GettingReadyPreview() {
           ))}
 
           {props.map((prop) => (
-            <div key={prop.src} className={styles.prop} style={{ left: prop.x, top: prop.y, width: prop.w }}>
+            <div key={prop.src} className={styles.prop} style={{ left: prop.x, top: prop.y + COLLAGE_TOP_OFFSET, width: prop.w }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={`/getting-ready-preview/${prop.src}`} alt="" />
             </div>
@@ -135,6 +136,7 @@ export default function GettingReadyPreview() {
           <motion.button
             type="button"
             className={styles.cutoutTop}
+            style={{ top: COLLAGE_TOP_OFFSET }}
             aria-label="Enlarge friends hugging photo"
             onClick={() => setSelectedImage({ src: "/getting-ready-preview/cutout-11.webp", alt: "Friends hugging while getting ready" })}
             initial={cutout02Anim.initial}
@@ -148,6 +150,7 @@ export default function GettingReadyPreview() {
           <motion.button
             type="button"
             className={styles.cutoutBottom}
+            style={{ top: 410 + COLLAGE_TOP_OFFSET }}
             aria-label="Enlarge friends laughing photo"
             onClick={() => setSelectedImage({ src: "/getting-ready-preview/cutout-08.webp", alt: "Friends laughing while getting ready" })}
             initial={shot7Anim.initial}
